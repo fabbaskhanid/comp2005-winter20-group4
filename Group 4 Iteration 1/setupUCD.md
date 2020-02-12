@@ -60,9 +60,9 @@ players will be able to partake without a handicap.
 
 * Alternative Flow #1: 
 ** Loading a saved game
-3.	The user requests to "Load a Saved Game";
-4.	The system sets up the game board so that it matches the state of the saved game;
-5.	The system waits for the player to start a turn.
+	3.	The user requests to "Load a Saved Game";
+	4.	The system sets up the game board so that it matches the state of the saved game;
+	5.	The system waits for the player to start a turn.
 
 * Alternative Flow #2:
 ** Selecting the Number of Players
