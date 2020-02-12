@@ -1,0 +1,25 @@
+Iteration 1 work division
+
+Vision Document and data dictionary:	Farbod
+
+List of actors and their goals:		Matt
+
+2 fully dressed use case descriptions:	Jesse
+
+1 UI prototype sketch: 			Apurba
+
+1 UI prototype sketch: 			Trent
+
+one brief use case:			Matt
+
+Three brief use case:			Trent
+
+domain model:				Apurba
+
+Plan:	tbd
+
+
+
+
+
+
