@@ -1,9 +1,11 @@
+import javax.swing.*;
+
 public class BoardTile extends JButton
 {
 	private int rowIndex;
 	private int colIndex;
 	private boolean occupied;
-	private BoardTile adjacentTiles[];
+	private AdjacentTiles adjacentTiles;
 	private boolean targetLocation;
 	private Wall wall;
 
@@ -13,7 +15,7 @@ public class BoardTile extends JButton
 		this.rowIndex = row;
 		this.colIndex = col;
 		this.occupied = false;
-		this.adjacentTiles = BoardTile adjacentTiles[4];
+		this.adjacentTiles = new AdjacentTiles();
 		this.targetLocation = false;
 		this.wall = null;
 	}
@@ -33,12 +35,15 @@ public class BoardTile extends JButton
 		return this.occupied;
 	}
 
-	public void setAdjacent(BoardTile a, BoardTile b, BoardTile c, BoardTile d)
+	public void setAdjacent(BoardTile north, BoardTile south, BoardTile east, BoardTile west)
 	{
-		this.adjacentTiles = [a, b, c, d];
+		this.adjacentTiles.setNorth(north);
+		this.adjacentTiles.setSouth(south);
+		this.adjacentTiles.setEast(east);
+		this.adjacentTiles.setWest(west);
 	}
 
-	public BoardTile[] getAdjacent()
+	public AdjacentTiles getAdjacent()
 	{
 		return this.adjacentTiles;
 	}
