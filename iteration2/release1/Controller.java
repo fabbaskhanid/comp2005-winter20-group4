@@ -5,11 +5,13 @@ public class Controller
 {
 	private Settings gameSettings;
 	private Window gameWindow;
+	private GameMenu menu;
 
 	Controller()
 	{
 		this.gameWindow = new Window();
 		this.gameSettings = new Settings();
+		this.menu = new GameMenu(this.gameSettings);
 		start();
 	}
 
@@ -115,6 +117,7 @@ public class Controller
 		gameSpace.add(names, BorderLayout.EAST);
 		this.gameWindow.getContentPane().add(gameSpace);
 		
+		this.gameWindow.getFrame().setJMenuBar(this.menu.getMenuBar());
 
 		this.gameWindow.getFrame().revalidate();
 		this.gameWindow.getFrame().repaint();

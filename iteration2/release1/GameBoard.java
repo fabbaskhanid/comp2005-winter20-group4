@@ -36,8 +36,8 @@ public class GameBoard
 			{
 				JPanel panel = new JPanel();
 				BoardTile tile = new BoardTile(i, j);
+				tile.setPreferredSize(new Dimension(32, 32));
 				tile.setBorder(BorderFactory.createLineBorder(Color.black));
-				tile.setPreferredSize(new Dimension(30, 30));
 				panel.add(tile);
 				this.gameBoard.add(panel);
 				j++;
