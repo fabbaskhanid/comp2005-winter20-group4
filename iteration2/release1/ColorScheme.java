@@ -40,43 +40,47 @@ public class ColorScheme{
 	
 	public void defaultScheme()
 	{
+		//default colors for people without color blindness
 		Color red = new Color(255,0,0);
 		Color blue = new Color(0,0,255);
 		Color yellow = new Color(255,255,0);
 		Color green = new Color(0,255,0);
-		applyColor(red, blue, yellow, green);
+		setColor(red, blue, yellow, green);
 	}
 	
 	public void protanopiaScheme()
 	{
+		//replacement colors for people with red color blindness
 		Color red = new Color(134,161,87);
 		Color blue = new Color(1,77,165);
 		Color yellow = new Color(243,243,19);
 		Color green = new Color(255,255,129);
-		applyColor(red, blue, yellow, green);
+		setColor(red, blue, yellow, green);
 	}
 	
 	public void deuteranopiaScheme()
 	{
+		//replacement colors for people with red-green color blindness
 		Color red = new Color(220,151,13);
 		Color blue = new Color(0,51,102);
 		Color yellow = new Color(255,232,183);
 		Color green = new Color(255,229,204);
-		applyColor(red, blue, yellow, green);
+		setColor(red, blue, yellow, green);
 	}
 	
 	public void tritanopiaScheme()
 	{
+		//replacement colors for people with blue-yellow color blindness
 		Color red = new Color(255,36,36);
 		Color blue = new Color(0,102,102);
 		Color yellow = new Color(51,255,255);
 		Color green = new Color(255,204,255);
-		applyColor(red, blue, yellow, green);
+		setColor(red, blue, yellow, green);
 	}
 	
-	public void applyColor(Color r, Color b, Color y, Color g)
+	public void setColor(Color r, Color b, Color y, Color g)
 	{
-		//applies the colors to the game
+		//sets which colors are to be used
 		//nothing to really apply to atm
 		Color red = r;
 		Color blue = b;
@@ -88,4 +92,25 @@ public class ColorScheme{
 		Color darkGray = new Color(107,107,107);
 	}
 	
+	public Color getRed()
+	{
+		return red;
+	}
+	
+	public Color getBlue()
+	{
+		return blue;
+	}
+	
+	public Color getYellow()
+	{
+		return yellow;
+	}
+	
+	public Color getGreen()
+	{
+		return green;
+	}
+	
+}	
 }
