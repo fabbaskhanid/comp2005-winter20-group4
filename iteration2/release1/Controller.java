@@ -16,7 +16,8 @@ public class Controller
 	{
 		JPanel settingsWindow = new JPanel(new BorderLayout());
 		settingsWindow.add(new JLabel("Welcome to Ricochet Robots \nPlease select the difficulty level:"), BorderLayout.NORTH);
-
+		this.gameWindow.getFrame.pack();
+		this.gameWindow.getFrame.setVisible(true);
 	}
 
 }

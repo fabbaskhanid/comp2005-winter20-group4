@@ -8,7 +8,7 @@ public class Settings
 	{
 		this.players = new Player[4];
 		this.gameBoard = new GameBoard();
-		this.theme = new ColorScheme();
+		this.theme = new ColorScheme(0);
 	}
 
 	public void setPlayers(Player a, Player b, Player c, Player d)
@@ -23,6 +23,6 @@ public class Settings
 
 	public void setTheme(ColorScheme newColorScheme)
 	{
-		this.colorScheme = newColorScheme;	
+		this.theme = newColorScheme;	
 	}
 }

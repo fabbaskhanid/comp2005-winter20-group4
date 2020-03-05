@@ -1,8 +1,10 @@
 import java.awt.*;
 import javax.swing.*;
 
+
 public class Window
 {
+
 	private JFrame frame;
 	private Container contentPane;
 
