@@ -15,6 +15,7 @@ public class Controller
 
 	public void start()
 	{ 
+		this.gameWindow.getFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		JPanel settingsWindow = new JPanel(new BorderLayout());
 		settingsWindow.add(new JLabel("WELCOME TO RICOCHET ROBOTS\nPLEASE SELECT THE DIFFICULTY LEVEL:"), BorderLayout.NORTH);
 		JButton easyButton = new JButton("EASY");
