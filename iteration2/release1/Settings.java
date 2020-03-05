@@ -16,9 +16,9 @@ public class Settings
 		this.players = new Player[]{a, b, c, d};
 	}
 
-	public void setGameBoard(GameBoard gameBoard)
+	public void setGameBoard(GameBoard newGameBoard)
 	{
-		this.gameBoard = gameBoard;
+		this.gameBoard = newGameBoard;
 	}
 
 	public void setTheme(ColorScheme newColorScheme)
