@@ -5,7 +5,7 @@ public class GameBoard
 {
 	private int row;
 	private int col;
-	JPanel gameBoard;
+	private JPanel gameBoard;
 
 	GameBoard()
 	{
@@ -35,9 +35,9 @@ public class GameBoard
 			while(j < this.col)
 			{
 				JPanel panel = new JPanel();
-				panel.setBorder(BorderFactory.createLineBorder(Color.black));
 				BoardTile tile = new BoardTile(i, j);
-				tile.setPreferredSize(new Dimension(100, 100));
+				tile.setBorder(BorderFactory.createLineBorder(Color.black));
+				tile.setPreferredSize(new Dimension(30, 30));
 				panel.add(tile);
 				this.gameBoard.add(panel);
 				j++;
@@ -46,6 +46,11 @@ public class GameBoard
 			i++;
 		}
 		
+	}
+
+	public JPanel getBoardPanel()
+	{
+		return this.gameBoard;
 	}
 
 }

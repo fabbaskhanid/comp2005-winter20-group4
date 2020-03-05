@@ -15,7 +15,7 @@ public class Controller
 
 	public void start()
 	{ 
-		this.gameWindow.getFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		this.gameWindow.getFrame().setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		JPanel settingsWindow = new JPanel(new BorderLayout());
 		settingsWindow.add(new JLabel("WELCOME TO RICOCHET ROBOTS\nPLEASE SELECT THE DIFFICULTY LEVEL:"), BorderLayout.NORTH);
 		JButton easyButton = new JButton("EASY");
@@ -24,9 +24,7 @@ public class Controller
 			GameBoard simpleBoard = new GameBoard();
 			simpleBoard.setSimple();
 			this.gameSettings.setGameBoard(simpleBoard);
-			
 			enterNames();
-
 		});
 		JButton hardButton = new JButton("HARD");
 		hardButton.addActionListener(p -> 
@@ -34,7 +32,6 @@ public class Controller
 
 			GameBoard complexBoard = new GameBoard();
 			complexBoard.setComplex();
-
 			this.gameSettings.setGameBoard(complexBoard);
 			System.out.println("fs");
 			enterNames();
@@ -92,7 +89,6 @@ public class Controller
 		this.gameWindow.getContentPane().add(nameWindow);
 		this.gameWindow.getFrame().revalidate();
 		this.gameWindow.getFrame().repaint();
-		//this.gameWindow.getFrame().setVisible(true);
 	}
 
 	public void setDifficulty()
@@ -102,6 +98,26 @@ public class Controller
 
 	public void createGame()
 	{
+		this.gameWindow.getContentPane().removeAll();
+
+		JPanel gameSpace = new JPanel(new BorderLayout());
+		JPanel names = new JPanel(new GridLayout(5, 2));
+		names.add(new JLabel("Player Names  "));
+		names.add(new JLabel("  Target Chips"));
+		for(int i = 0; i < 4; i++)
+		{
+			names.add(new JLabel((this.gameSettings.getPlayers())[i].getName()));
+			names.add(new JLabel(String.valueOf((this.gameSettings.getPlayers())[i].getTargetChips())));
+		}
+
+		this.gameSettings.getGameBoard().createBoard();
+		gameSpace.add(this.gameSettings.getGameBoard().getBoardPanel(), BorderLayout.CENTER);
+		gameSpace.add(names, BorderLayout.EAST);
+		this.gameWindow.getContentPane().add(gameSpace);
 		
+
+		this.gameWindow.getFrame().revalidate();
+		this.gameWindow.getFrame().repaint();
+
 	}
 }

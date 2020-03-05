@@ -25,4 +25,19 @@ public class Settings
 	{
 		this.theme = newColorScheme;	
 	}
+
+	public GameBoard getGameBoard()
+	{
+		return this.gameBoard;
+	}
+
+	public ColorScheme getTheme()
+	{
+		return this.theme;
+	}
+
+	public Player[] getPlayers()
+	{
+		return this.players;
+	}
 }
