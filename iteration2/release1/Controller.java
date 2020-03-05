@@ -15,7 +15,24 @@ public class Controller
 	public void start()
 	{
 		JPanel settingsWindow = new JPanel(new BorderLayout());
-		settingsWindow.add(new JLabel("Welcome to Ricochet Robots \nPlease select the difficulty level:"), BorderLayout.NORTH);
+		settingsWindow.add(new JLabel("WELCOME TO RICOCHET ROBOTS\nPLEASE SELECT THE DIFFICULTY LEVEL:"), BorderLayout.NORTH);
+		JButton easyButton = new JButton("EASY");
+		easyButton.addActionListener(p -> 
+		{
+			GameBoard simpleBoard = new GameBoard();
+			simpleBoard.setSimple();
+			gameSettings.setGameBoard(simpleBoard);
+		});
+		JButton hardButton = new JButton("HARD");
+		hardButton.addActionListener(p -> 
+		{
+			GameBoard complexBoard = new GameBoard();
+			complexBoard.setComplex();
+			gameSettings.setGameBoard(complexBoard);
+		});
+		settingsWindow.add(easyButton, BorderLayout.WEST);
+		settingsWindow.add(hardButton, BorderLayout.EAST);
+		this.gameWindow.getContentPane().add(settingsWindow);
 		this.gameWindow.getFrame().pack();
 		this.gameWindow.getFrame().setVisible(true);
 	}
