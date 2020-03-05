@@ -21,8 +21,8 @@ public class Settings
 		this.gameBoard = gameBoard;
 	}
 
-	public void setTheme(ColorScheme colorScheme)
+	public void setTheme(ColorScheme newColorScheme)
 	{
-		this.colorScheme = colorScheme;	
+		this.colorScheme = newColorScheme;	
 	}
 }
