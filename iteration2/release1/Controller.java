@@ -19,7 +19,7 @@ public class Controller
 	{ 
 		this.gameWindow.getFrame().setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		JPanel settingsWindow = new JPanel(new BorderLayout());
-		settingsWindow.add(new JLabel("WELCOME TO RICOCHET ROBOTS\nPLEASE SELECT THE DIFFICULTY LEVEL:"), BorderLayout.NORTH);
+		settingsWindow.add(new JLabel("<html>WELCOME TO RICOCHET ROBOTS!<br/>PLEASE SELECT THE DIFFICULTY LEVEL:</html>"), BorderLayout.NORTH);
 		JButton easyButton = new JButton("EASY");
 		easyButton.addActionListener(p -> 
 		{
@@ -69,7 +69,7 @@ public class Controller
 			Player[] players = new Player[4];
 			for(int i = 0; i < 4; i++)
 			{
-				if(textFields[i].getText() != null)
+				if(textFields[i].getText().isEmpty() == false)
 				{
 					playerCount++;
 					players[i] = new Player(textFields[i].getText());
@@ -94,7 +94,41 @@ public class Controller
 
 	public void setDifficulty()
 	{
-
+		this.gameWindow.getContentPane().removeAll();
+		JPanel difficultyPanel = new JPanel(new BorderLayout());
+		JLabel label = new JLabel("Please enter the desired skill level of the CPU players");
+		JButton novice = new JButton("Novice");
+		novice.addActionListener(p ->
+		{
+			for(int i = 0; i < this.gameSettings.getPlayers().length; i++)
+			{
+				Player player = this.gameSettings.getPlayers()[i];
+				if(player == null)
+				{
+					player = new SimpleAI("CPU" + i);
+				}
+			}
+			createGame();
+		});
+	
+		JButton pro = new JButton("Professional");
+		pro.addActionListener(p ->
+		{
+			for(int i = 0; i < this.gameSettings.getPlayers().length; i++)
+			{
+				if(this.gameSettings.getPlayers()[i] == null)
+				{
+					this.gameSettings.getPlayers()[i] = new SmartAI("CPU" + i);
+				}
+			}
+			createGame();
+		});
+		difficultyPanel.add(label, BorderLayout.NORTH);
+		difficultyPanel.add(novice, BorderLayout.WEST);
+		difficultyPanel.add(pro, BorderLayout.EAST);
+		this.gameWindow.getContentPane().add(difficultyPanel);
+		this.gameWindow.getFrame().revalidate();
+		this.gameWindow.getFrame().repaint();
 	}
 
 	public void createGame()
