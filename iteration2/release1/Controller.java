@@ -35,7 +35,6 @@ public class Controller
 			GameBoard complexBoard = new GameBoard();
 			complexBoard.setComplex();
 			this.gameSettings.setGameBoard(complexBoard);
-			System.out.println("fs");
 			enterNames();
 		});
 		settingsWindow.add(easyButton, BorderLayout.WEST);
