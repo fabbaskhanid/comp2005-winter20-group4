@@ -5,6 +5,7 @@ public class GameBoard
 {
 	private int row;
 	private int col;
+	private BoardTile[][] tiles;
 	private JPanel gameBoard;
 	private Robot blueRobot;
 	private Robot yellowRobot;
@@ -31,6 +32,8 @@ public class GameBoard
 		this.lightGrayRobot = new Robot(8, 4, theme.getLightGray());
 		this.greenRobot = new Robot(13, 5, theme.getGreen());
 		this.redRobot = new Robot(3, 11, theme.getRed());
+
+
 	}
 
 	public void setComplex(ColorScheme theme)
@@ -45,8 +48,10 @@ public class GameBoard
 	public void createBoard()
 	{
 		this.gameBoard.setLayout(new GridLayout(this.row, this.col));
+		tiles = new BoardTile[16][16];
 		int i = 0;
 		int j = 0;
+
 		while(i < this.row)
 		{
 			while(j < this.col)
