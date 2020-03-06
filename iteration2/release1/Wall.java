@@ -3,14 +3,14 @@ import javax.swing.BorderFactory;
 
 public class Wall extends BoardTile{
 	
-	private int rowIndex
+	private int rowIndex;
 	private int colIndex;
 	
 	public Wall(int row, int col)
 	{
-		super();
+		super(row, col);
 	}
-	
+/*	
 	public void setWallNorth()
 	{
 		tile.setBorder(BorderFactory.createMatteBorder(5, 0, 0, 0, Color.BLACK));
@@ -30,4 +30,5 @@ public class Wall extends BoardTile{
 	{
 		tile.setBorder(BorderFactory.createMatteBorder(0, 5, 0, 0, Color.BLACK));
 	}
+	*/
 }
