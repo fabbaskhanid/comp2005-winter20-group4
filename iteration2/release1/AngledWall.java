@@ -1,4 +1,4 @@
-import java.awt.Color;
+/*import java.awt.Color;
 
 public class AngledWall extends Wall{
 
@@ -13,12 +13,13 @@ public class AngledWall extends Wall{
 
         public void setBack(Color color)
         {
-                this.tile.setText(“\”).setForeground(color);
+               // this.tile.setText(“\\”).setForeground(color);
         }
 
         public void setFore(Color color)
         {
-                this.tile.setText(“/”).setForeground(color);
+              //  this.tile.setText(“\/”).setForeground(color);
         }
 	
 }
+*/
