@@ -111,9 +111,9 @@ public class Controller
 			names.add(new JLabel((this.gameSettings.getPlayers())[i].getName()));
 			names.add(new JLabel(String.valueOf((this.gameSettings.getPlayers())[i].getTargetChips())));
 		}
-
-		this.gameSettings.getGameBoard().createBoard();
-		gameSpace.add(this.gameSettings.getGameBoard().getBoardPanel(), BorderLayout.CENTER);
+		JPanel boardBase = new JPanel();
+		boardBase.add(this.gameSettings.getGameBoard().getBoardPanel());
+		gameSpace.add(boardBase, BorderLayout.CENTER);
 		gameSpace.add(names, BorderLayout.EAST);
 		this.gameWindow.getContentPane().add(gameSpace);
 		

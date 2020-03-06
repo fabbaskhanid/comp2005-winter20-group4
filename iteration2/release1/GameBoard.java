@@ -34,9 +34,10 @@ public class GameBoard
 		{
 			while(j < this.col)
 			{
+				System.out.println("i = " + i + ", j = " + j);
 				JPanel panel = new JPanel();
 				BoardTile tile = new BoardTile(i, j);
-				tile.setPreferredSize(new Dimension(32, 32));
+				tile.setPreferredSize(new Dimension(31, 31));
 				tile.setBorder(BorderFactory.createLineBorder(Color.black));
 				panel.add(tile);
 				this.gameBoard.add(panel);
