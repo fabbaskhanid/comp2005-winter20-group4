@@ -75,6 +75,10 @@ public class Controller
 					players[i] = new Player(textFields[i].getText());
 				}
 			}
+			if(playerCount == 0)
+			{
+				return;
+			}
 			gameSettings.setPlayers(players[0], players[1], players[2], players[3]);
 			if(playerCount != 4)
 			{
