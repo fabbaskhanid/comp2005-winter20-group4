@@ -86,10 +86,6 @@ public class ColorScheme{
 		Color blue = b;
 		Color yellow = y;
 		Color green = g;
-		Color white = new Color(255,255,255);
-		Color black = new Color(0,0,0);
-		Color lightGray = new Color(220,220,220);
-		Color darkGray = new Color(107,107,107);
 	}
 	
 	public Color getRed()
@@ -111,6 +107,4 @@ public class ColorScheme{
 	{
 		return green;
 	}
-	
-}	
-
+}
