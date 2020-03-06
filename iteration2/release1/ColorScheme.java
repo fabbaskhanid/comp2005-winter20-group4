@@ -41,30 +41,33 @@ public class ColorScheme{
 	public void defaultScheme()
 	{
 		//default colors for people without color blindness
-		Color red = new Color(255,0,0);
-		Color blue = new Color(0,0,255);
-		Color yellow = new Color(255,255,0);
-		Color green = new Color(0,255,0);
+		this.red = new Color(255,0,0);
+		this.blue = new Color(0,0,255);
+		this.yellow = new Color(255,255,0);
+		this.green = new Color(0,255,0);
+		this.lightGray = new Color(192,192,192);
 		setColor(red, blue, yellow, green);
 	}
 	
 	public void protanopiaScheme()
 	{
 		//replacement colors for people with red color blindness
-		Color red = new Color(134,161,87);
-		Color blue = new Color(1,77,165);
-		Color yellow = new Color(243,243,19);
-		Color green = new Color(255,255,129);
+		this.red = new Color(134,161,87);
+		this.blue = new Color(1,77,165);
+		this.yellow = new Color(243,243,19);
+		this.green = new Color(255,255,129);
+		this.lightGray = new Color(192,192,192);
 		setColor(red, blue, yellow, green);
 	}
 	
 	public void deuteranopiaScheme()
 	{
 		//replacement colors for people with red-green color blindness
-		Color red = new Color(220,151,13);
-		Color blue = new Color(0,51,102);
-		Color yellow = new Color(255,232,183);
-		Color green = new Color(255,229,204);
+		this.red = new Color(220,151,13);
+		this.blue = new Color(0,51,102);
+		this.yellow = new Color(255,232,183);
+		this.green = new Color(255,229,204);
+		this.lightGray = new Color(192,192,192);
 		setColor(red, blue, yellow, green);
 	}
 	
@@ -90,21 +93,26 @@ public class ColorScheme{
 	
 	public Color getRed()
 	{
-		return red;
+		return this.red;
 	}
 	
 	public Color getBlue()
 	{
-		return blue;
+		return this.blue;
 	}
 	
 	public Color getYellow()
 	{
-		return yellow;
+		return this.yellow;
 	}
 	
 	public Color getGreen()
 	{
-		return green;
+		return this.green;
+	}
+
+	public Color getLightGray()
+	{
+		return this.lightGray;
 	}
 }

@@ -24,7 +24,7 @@ public class Controller
 		easyButton.addActionListener(p -> 
 		{
 			GameBoard simpleBoard = new GameBoard();
-			simpleBoard.setSimple();
+			simpleBoard.setSimple(this.gameSettings.getTheme());
 			this.gameSettings.setGameBoard(simpleBoard);
 			enterNames();
 		});
@@ -33,7 +33,7 @@ public class Controller
 		{
 
 			GameBoard complexBoard = new GameBoard();
-			complexBoard.setComplex();
+			complexBoard.setComplex(this.gameSettings.getTheme());
 			this.gameSettings.setGameBoard(complexBoard);
 			enterNames();
 		});
@@ -102,10 +102,9 @@ public class Controller
 		{
 			for(int i = 0; i < this.gameSettings.getPlayers().length; i++)
 			{
-				Player player = this.gameSettings.getPlayers()[i];
-				if(player == null)
+				if(this.gameSettings.getPlayers()[i] == null)
 				{
-					player = new SimpleAI("CPU" + i);
+					 this.gameSettings.getPlayers()[i] = new SimpleAI("CPU" + i);
 				}
 			}
 			createGame();
