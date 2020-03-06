@@ -4,34 +4,41 @@ public class BoardTile extends JButton
 {
 	private int rowIndex;
 	private int colIndex;
-	private boolean occupied;
 	private AdjacentTiles adjacentTiles;
 	private TargetChip targetChip;
 	private Wall wall;
+	private Robot robot;
 
 	BoardTile(int row, int col)
 	{
 		super();
 		this.rowIndex = row;
 		this.colIndex = col;
-		this.occupied = false;
 		this.adjacentTiles = new AdjacentTiles();
 		this.wall = null;
+		this.robot = null;
 	}
 
-	public void occupy()
+	public void occupy(Robot robot)
 	{
-		this.occupied = true;
+		this.robot = robot;
 	}
 
 	public void leave()
 	{
-		this.occupied = false;
+		this.robot = null;
 	}
 
 	public boolean isOccupied()
 	{
-		return this.occupied;
+		if(this.robot != null)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	public void setAdjacent(BoardTile north, BoardTile south, BoardTile east, BoardTile west)

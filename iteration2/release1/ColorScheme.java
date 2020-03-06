@@ -13,7 +13,6 @@ public class ColorScheme{
 	
 	public ColorScheme(int colorPalette)
 	{
-		super();
 		this.colorPalette = colorPalette;
 		setColorScheme(colorPalette);		
 	}
