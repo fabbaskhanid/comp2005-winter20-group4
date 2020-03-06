@@ -46,6 +46,43 @@ public class GameBoard
 		this.grid[13][5].add(this.greenRobot.getIcon());
 		this.grid[3][11].add(this.redRobot.getIcon());
 
+		this.tiles[1][2].setTargetChip(new TargetChip(theme.getGreen()));
+		this.tiles[4][1].setTargetChip(new TargetChip(theme.getRed()));
+		this.tiles[6][3].setTargetChip(new TargetChip(theme.getYellow()));
+		this.tiles[9][2].setTargetChip(new TargetChip(theme.getBlue()));
+		this.tiles[13][1].setTargetChip(new TargetChip(theme.getRed()));
+		this.tiles[14][5].setTargetChip(new TargetChip(theme.getGreen()));
+		this.tiles[3][6].setTargetChip(new TargetChip(theme.getBlue()));
+		this.tiles[11][6].setTargetChip(new TargetChip(theme.getYellow()));
+		this.tiles[1][9].setTargetChip(new TargetChip(theme.getBlue()));
+		this.tiles[4][10].setTargetChip(new TargetChip(theme.getGreen()));
+		this.tiles[8][10].setTargetChip(new TargetChip(theme.getRed()));
+		this.tiles[14][9].setTargetChip(new TargetChip(theme.getYellow()));
+		this.tiles[13][11].setTargetChip(new TargetChip(theme.getGreen()));
+		this.tiles[5][13].setTargetChip(new TargetChip(theme.getRed()));
+		this.tiles[10][13].setTargetChip(new TargetChip(theme.getBlue()));
+		this.tiles[3][14].setTargetChip(new TargetChip(theme.getYellow()));
+
+		this.tiles[1][2].setBackground(theme.getGreen());
+		this.tiles[4][1].setBackground(theme.getRed());
+		this.tiles[6][3].setBackground(theme.getYellow());
+		this.tiles[9][2].setBackground(theme.getBlue());
+		this.tiles[13][1].setBackground(theme.getRed());
+		this.tiles[14][5].setBackground(theme.getGreen());
+		this.tiles[3][6].setBackground(theme.getBlue());
+		this.tiles[11][6].setBackground(theme.getYellow());
+		this.tiles[1][9].setBackground(theme.getBlue());
+		this.tiles[4][10].setBackground(theme.getGreen());
+		this.tiles[8][10].setBackground(theme.getRed());
+		this.tiles[14][9].setBackground(theme.getYellow());
+		this.tiles[13][11].setBackground(theme.getGreen());
+		this.tiles[5][13].setBackground(theme.getRed());
+		this.tiles[10][13].setBackground(theme.getBlue());
+		this.tiles[3][14].setBackground(theme.getYellow());
+	
+
+
+
 	}
 
 	public void setComplex(ColorScheme theme)
@@ -68,7 +105,38 @@ public class GameBoard
 		this.grid[3][4].add(this.greenRobot.getIcon());
 		this.grid[9][11].add(this.redRobot.getIcon());
 
+		this.tiles[1][3].setTargetChip(new TargetChip(theme.getRed()));
+		this.tiles[10][1].setTargetChip(new TargetChip(theme.getRed()));
+		this.tiles[6][4].setTargetChip(new TargetChip(theme.getYellow()));
+		this.tiles[8][4].setTargetChip(new TargetChip(theme.getBlue()));
+		this.tiles[13][5].setTargetChip(new TargetChip(theme.getGreen()));
+		this.tiles[2][6].setTargetChip(new TargetChip(theme.getGreen()));
+		this.tiles[3][6].setTargetChip(new TargetChip(theme.getBlue()));
+		this.tiles[13][6].setTargetChip(new TargetChip(theme.getYellow()));
+		this.tiles[2][9].setTargetChip(new TargetChip(theme.getYellow()));
+		this.tiles[10][9].setTargetChip(new TargetChip(theme.getYellow()));
+		this.tiles[12][11].setTargetChip(new TargetChip(theme.getRed()));
+		this.tiles[3][12].setTargetChip(new TargetChip(theme.getGreen()));
+		this.tiles[3][13].setTargetChip(new TargetChip(theme.getBlue()));
+		this.tiles[9][13].setTargetChip(new TargetChip(theme.getBlue()));
+		this.tiles[5][14].setTargetChip(new TargetChip(theme.getRed()));
 
+		this.tiles[1][3].setBackground(theme.getRed());
+		this.tiles[10][1].setBackground(theme.getRed());
+		this.tiles[6][4].setBackground(theme.getYellow());
+		this.tiles[8][4].setBackground(theme.getBlue());
+		this.tiles[13][5].setBackground(theme.getGreen());
+		this.tiles[2][6].setBackground(theme.getGreen());
+		this.tiles[3][6].setBackground(theme.getBlue());
+		this.tiles[13][6].setBackground(theme.getYellow());
+		this.tiles[2][9].setBackground(theme.getYellow());
+		this.tiles[10][9].setBackground(theme.getYellow());
+		this.tiles[12][11].setBackground(theme.getRed());
+		this.tiles[3][12].setBackground(theme.getGreen());
+		this.tiles[3][13].setBackground(theme.getBlue());
+		this.tiles[9][13].setBackground(theme.getBlue());
+		this.tiles[5][14].setBackground(theme.getRed());
+		
 
 
 	}

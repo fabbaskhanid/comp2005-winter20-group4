@@ -11,7 +11,7 @@ public class Controller
 	{
 		this.gameWindow = new Window();
 		this.gameSettings = new Settings();
-		this.menu = new GameMenu(this.gameSettings);
+		this.menu = new GameMenu(this.gameSettings, this.gameWindow);
 		start();
 	}
 
@@ -80,7 +80,7 @@ public class Controller
 			{
 				setDifficulty();
 			}
-			else
+			else if(0 < playerCount)
 			{
 				createGame();
 			}
