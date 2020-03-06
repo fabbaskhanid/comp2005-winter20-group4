@@ -6,7 +6,7 @@ public class BoardTile extends JButton
 	private int colIndex;
 	private boolean occupied;
 	private AdjacentTiles adjacentTiles;
-	private boolean targetLocation;
+	private TargetChip targetChip;
 	private Wall wall;
 
 	BoardTile(int row, int col)
@@ -16,7 +16,6 @@ public class BoardTile extends JButton
 		this.colIndex = col;
 		this.occupied = false;
 		this.adjacentTiles = new AdjacentTiles();
-		this.targetLocation = false;
 		this.wall = null;
 	}
 
@@ -48,14 +47,15 @@ public class BoardTile extends JButton
 		return this.adjacentTiles;
 	}
 
-	public void setTargetLocation()
+	public void setTargetChip(TargetChip targetChip)
 	{
-		this.targetLocation = true;
+		this.targetChip = targetChip;
+		this.setBackground(targetChip.getColor());
 	}
 
-	public boolean getTargetLocation()
+	public TargetChip getTargetChip()
 	{
-		return this.targetLocation;
+		return this.targetChip;
 	}
 
 	public void setWall(Wall newWall)

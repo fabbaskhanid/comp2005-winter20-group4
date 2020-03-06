@@ -6,6 +6,14 @@ public class GameBoard
 	private int row;
 	private int col;
 	private JPanel gameBoard;
+	private Robot blueRobot;
+	private Robot yellowRobot;
+	private Robot lightGrayRobot;
+	private Robot greenRobot;
+	private Robot redRobot;
+
+
+
 
 	GameBoard()
 	{
@@ -13,16 +21,25 @@ public class GameBoard
 		this.col = 16;
 		this.gameBoard = new JPanel();
 		createBoard();
-	}
-
-	public void setSimple()
-	{
 
 	}
 
-	public void setComplex()
+	public void setSimple(ColorScheme theme)
 	{
+		this.blueRobot = new Robot(0, 0, theme.getBlue());
+		this.yellowRobot = new Robot(10, 3, theme.getYellow());
+		this.lightGrayRobot = new Robot(8, 4, theme.getLightGray());
+		this.greenRobot = new Robot(13, 5, theme.getGreen());
+		this.redRobot = new Robot(3, 11, theme.getRed());
+	}
 
+	public void setComplex(ColorScheme theme)
+	{
+		this.greenRobot = new Robot(3, 4, theme.getGreen());
+		this.blueRobot = new Robot(3, 11, theme.getBlue());
+		this.redRobot = new Robot(9, 11, theme.getRed());
+		this.yellowRobot = new Robot(0, 14, theme.getYellow());
+		this.lightGrayRobot = new Robot(3, 14, theme.getLightGray());
 	}
 
 	public void createBoard()
@@ -51,6 +68,11 @@ public class GameBoard
 	public JPanel getBoardPanel()
 	{
 		return this.gameBoard;
+	}
+
+	public void getRobots()
+	{
+		Robot[] robots = new Robot[]{this.yellowRobot, this.greenRobot, this.blueRobot, this.redRobot, this.lightGrayRobot};
 	}
 
 }
