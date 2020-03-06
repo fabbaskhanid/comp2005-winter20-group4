@@ -7,11 +7,13 @@ public class GameMenu
 	private JMenu settingsTab;
 	private JMenu Theme;
 	private Settings settings;
+	private Window gameWindow;
 
-	GameMenu(Settings gameSettings)
+	GameMenu(Settings gameSettings, Window gameWindow)
 	{
 		this.menuBar = new JMenuBar();
 		this.settings = gameSettings;
+		this.gameWindow = gameWindow;
 		init();
 	}
 
@@ -32,11 +34,15 @@ public class GameMenu
 		t1.addActionListener(p -> 
 		{
 			this.settings.getTheme().setColorScheme(1);
+			this.gameWindow.getFrame().revalidate();
+			this.gameWindow.getFrame().repaint();
 		});
 		JMenuItem t2 = new JMenuItem("Cosmic");
 		t2.addActionListener(p -> 
 		{
 			this.settings.getTheme().setColorScheme(2);
+			this.gameWindow.getFrame().revalidate();
+			this.gameWindow.getFrame().repaint();
 		});
 		JMenuItem t3 = new JMenuItem("Hi-Contrast");
 		t3.addActionListener(p -> 
