@@ -11,8 +11,13 @@ public class Robot
 		this.coordinates = new int[]{startX, startY};
 		this.color = robotColor;
 		icon = new JPanel();
-		JLabel botLabel = new JLabel("Robot");
+		JLabel botLabel = new JLabel("R");
+		icon.add(botLabel);
 	}
 
+	public JPanel getIcon()
+	{
+		return this.icon;
+	}
 
 }
