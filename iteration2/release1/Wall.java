@@ -1,29 +1,16 @@
 import java.awt.Color;
-
 import javax.swing.BorderFactory;
 
-public class Wall {
+public class Wall extends BoardTile{
 	
-	private Boolean passable;
-	private BoardTile tile;
+	private int rowIndex;
+	private int colIndex;
 	
-	public Wall(BoardTile tile)
+	public Wall(int row, int col)
 	{
-		this.tile = tile;
+		super(row, col);
 	}
-	
-	public Boolean getPassable() 
-	{
-		//see if passable
-		return passable;
-	}
-
-	public void setPassable(Boolean passable) 
-	{
-		//set passable and unpassable
-		this.passable = passable;
-	}
-	
+/*	
 	public void setWallNorth()
 	{
 		tile.setBorder(BorderFactory.createMatteBorder(5, 0, 0, 0, Color.BLACK));
@@ -43,4 +30,5 @@ public class Wall {
 	{
 		tile.setBorder(BorderFactory.createMatteBorder(0, 5, 0, 0, Color.BLACK));
 	}
+	*/
 }
