@@ -13,6 +13,7 @@ public class GameBoard
 	private Robot lightGrayRobot;
 	private Robot greenRobot;
 	private Robot redRobot;
+	private Boolean complex;
 
 
 
@@ -26,8 +27,14 @@ public class GameBoard
 
 	}
 
+	public boolean isComplex()
+	{
+		return this.complex;
+	}
+
 	public void setSimple(ColorScheme theme)
 	{
+		this.complex = false;
 		this.blueRobot = new Robot(0, 0, theme.getBlue());
 		this.yellowRobot = new Robot(10, 3, theme.getYellow());
 		this.lightGrayRobot = new Robot(8, 4, theme.getLightGray());
@@ -87,6 +94,7 @@ public class GameBoard
 
 	public void setComplex(ColorScheme theme)
 	{
+		this.complex = true;
 		this.greenRobot = new Robot(3, 4, theme.getGreen());
 		this.blueRobot = new Robot(3, 11, theme.getBlue());
 		this.redRobot = new Robot(9, 11, theme.getRed());

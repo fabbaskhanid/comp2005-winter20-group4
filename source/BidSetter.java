@@ -25,7 +25,6 @@ public class BidSetter
 	{
 		this.bidPopUp.setLayout(new BorderLayout());
 		this.bidPopUp.setVisible(true);
-		System.out.println("flag");
 		time(frame);
 		bidSlots(a, b, c, d);
 	}

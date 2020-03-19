@@ -29,18 +29,44 @@ public class GameMenu
 		t0.addActionListener(p ->
 		{
 			this.settings.getTheme().setColorScheme(0);
+			if(this.settings.getGameBoard().isComplex())
+			{
+				this.settings.getGameBoard().setComplex(this.settings.getTheme());
+			}
+			else
+			{
+				this.settings.getGameBoard().setSimple(this.settings.getTheme());
+			}
+			this.gameWindow.getFrame().getContentPane().revalidate();
+			this.gameWindow.getFrame().getContentPane().repaint();
 		});
 		JMenuItem t1 = new JMenuItem("Retro");
 		t1.addActionListener(p -> 
 		{
 			this.settings.getTheme().setColorScheme(1);
-			this.gameWindow.getFrame().revalidate();
-			this.gameWindow.getFrame().repaint();
+			if(this.settings.getGameBoard().isComplex())
+			{
+				this.settings.getGameBoard().setComplex(this.settings.getTheme());
+			}
+			else
+			{
+				this.settings.getGameBoard().setSimple(this.settings.getTheme());
+			}
+			this.gameWindow.getFrame().getContentPane().revalidate();
+			this.gameWindow.getFrame().getContentPane().repaint();
 		});
 		JMenuItem t2 = new JMenuItem("Cosmic");
 		t2.addActionListener(p -> 
 		{
 			this.settings.getTheme().setColorScheme(2);
+			if(this.settings.getGameBoard().isComplex())
+			{
+				this.settings.getGameBoard().setComplex(this.settings.getTheme());
+			}
+			else
+			{
+				this.settings.getGameBoard().setSimple(this.settings.getTheme());
+			}
 			this.gameWindow.getFrame().revalidate();
 			this.gameWindow.getFrame().repaint();
 		});
@@ -48,6 +74,16 @@ public class GameMenu
 		t3.addActionListener(p -> 
 		{
 			this.settings.getTheme().setColorScheme(3);
+			if(this.settings.getGameBoard().isComplex())
+			{
+				this.settings.getGameBoard().setComplex(this.settings.getTheme());
+			}
+			else
+			{
+				this.settings.getGameBoard().setSimple(this.settings.getTheme());
+			}
+			this.gameWindow.getFrame().revalidate();
+			this.gameWindow.getFrame().repaint();
 		});
 
 		theme.add(t0);
