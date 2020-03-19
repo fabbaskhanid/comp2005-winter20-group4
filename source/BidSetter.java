@@ -1,13 +1,17 @@
 import javax.swing.*;
 import java.awt.*;
-//import java.util.Timer;
-//import java.util.TimerTask;
+import java.util.ArrayList;
+import java.util.Arrays;
+import javax.swing.Timer;
+import java.util.Collections;
+
 
 public class BidSetter
 {
 
 	private JDialog bidPopUp;
 	private boolean timerFinished;
+	private ArrayList<Player> playerOrder;
 
 
 	BidSetter(JFrame frame, Player a, Player b, Player c, Player d)
@@ -25,11 +29,11 @@ public class BidSetter
 	{
 		this.bidPopUp.setLayout(new BorderLayout());
 		this.bidPopUp.setVisible(true);
-		time(frame);
+		time(frame, a, b, c, d);
 		bidSlots(a, b, c, d);
 	}
 
-	public void time(JFrame frame)
+	public void time(JFrame frame, Player a, Player b, Player c, Player d)
 	{
 		final Counter counter = new Counter();
 		JPanel timePanel = new JPanel();
@@ -46,12 +50,14 @@ public class BidSetter
 				{
 					((Timer) (t.getSource())).stop();
 					this.bidPopUp.dispose();
+					this.timerFinished = true;
+					updatePlayerOrder(a, b, c, d);
 				}					
 			});
 		timer.setInitialDelay(0);
 		timer.start();
 		
-	//	this.timerFinished = true;
+		
 	}
 
 	public void bidSlots(Player a, Player b, Player c, Player d)
@@ -120,4 +126,31 @@ public class BidSetter
 		
 	}
 
+	public void updatePlayerOrder(Player a, Player b, Player c, Player d)
+	{
+		this.playerOrder = new ArrayList<Player>(Arrays.asList(a, b, c, d));
+
+		for(int i = 0; i < 4; i++)
+		{
+			for(int j = i; j < 4; j++)
+			{
+				if(playerOrder.get(i).getBid() > playerOrder.get(j).getBid())
+				{
+					Collections.swap(this.playerOrder, i, j);
+				} 
+			}
+		}
+	}
+
+	public ArrayList<Player> getPlayerOrder()
+	{
+		return this.playerOrder;
+	}
+
+	public boolean isTimerFinished()
+	{
+		return this.timerFinished;
+	}
+
 }
+

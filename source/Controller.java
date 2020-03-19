@@ -1,11 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Controller
 {
 	private Settings gameSettings;
 	private Window gameWindow;
 	private GameMenu menu;
+	private ArrayList<Player> curPlayerOrder;
 
 	Controller()
 	{
@@ -139,28 +141,42 @@ public class Controller
 		this.gameWindow.getContentPane().removeAll();
 
 		JPanel gameSpace = new JPanel(new BorderLayout());
-		JPanel names = new JPanel(new GridLayout(5, 3));
+		JPanel names = new JPanel(new GridLayout(5, 2));
 		JPanel boardBase = new JPanel();
 		names.add(new JLabel("Player Names  "));
 		names.add(new JLabel("  Target Chips"));
-		names.add(new JLabel());
+
 		for(int i = 0; i < 4; i++)
 		{
 			names.add(new JLabel((this.gameSettings.getPlayers())[i].getName()));
 			names.add(new JLabel(String.valueOf((this.gameSettings.getPlayers())[i].getTargetChips())));
-			JButton bidButton = new JButton("Bid");
-			names.add(bidButton);
-			bidButton.addActionListener(p ->
-			{
-				new BidSetter(this.gameWindow.getFrame(), this.gameSettings.getPlayers()[0], this.gameSettings.getPlayers()[1], this.gameSettings.getPlayers()[2], this.gameSettings.getPlayers()[3]);
-			//	this.gameWindow.getFrame().getContentPane().add(bidPopUp.getPopUp(), BorderLayout.CENTER);
-			});
-
 		}
 		
+		JPanel bidSection = new JPanel(new GridLayout(5, 1));
+		bidSection.add(new JPanel());
+		
+		for(int i = 0; i < 4; i++)
+		{
+			JButton bidButton = new JButton("Bid");
+			bidSection.add(bidButton);
+			bidButton.addActionListener(p ->
+			{
+				BidSetter bids = new BidSetter(this.gameWindow.getFrame(), this.gameSettings.getPlayers()[0], this.gameSettings.getPlayers()[1], this.gameSettings.getPlayers()[2], this.gameSettings.getPlayers()[3]);
+		//here is where the program crashes
+			
+				this.curPlayerOrder = bids.getPlayerOrder();
+				setBids(bidSection);
+				this.gameWindow.getFrame().revalidate();
+				this.gameWindow.getFrame().repaint();
+				
+				
+				
+			});
+		}
+		gameSpace.add(bidSection, BorderLayout.EAST);
 		boardBase.add(this.gameSettings.getGameBoard().getBoardPanel());
-		gameSpace.add(boardBase, BorderLayout.CENTER);
-		gameSpace.add(names, BorderLayout.EAST);
+		gameSpace.add(boardBase, BorderLayout.WEST);
+		gameSpace.add(names, BorderLayout.CENTER);
 		this.gameWindow.getContentPane().add(gameSpace);
 		
 		this.gameWindow.getFrame().setJMenuBar(this.menu.getMenuBar());
@@ -168,5 +184,18 @@ public class Controller
 		this.gameWindow.getFrame().revalidate();
 		this.gameWindow.getFrame().repaint();
 
+	}
+
+	private void setBids(JPanel panel)
+	{
+		panel.removeAll();
+		System.out.println("flag");
+		panel.setLayout(new GridLayout(5, 1));
+		panel.add(new JPanel());
+		for(int i = 0; i < 4; i++)
+		{
+			System.out.println("" + this.curPlayerOrder.get(i).getName());
+			panel.add(new JLabel("" + this.curPlayerOrder.get(i).getBid()));
+		}
 	}
 }
