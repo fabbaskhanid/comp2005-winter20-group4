@@ -73,10 +73,10 @@ public class ColorScheme{
 	public void tritanopiaScheme()
 	{
 		//replacement colors for people with blue-yellow color blindness
-		Color red = new Color(255,36,36);
-		Color blue = new Color(0,102,102);
-		Color yellow = new Color(51,255,255);
-		Color green = new Color(255,204,255);
+		this.red = new Color(255,36,36);
+		this.blue = new Color(0,102,102);
+		this.yellow = new Color(51,255,255);
+		this.green = new Color(255,204,255);
 		setColor(red, blue, yellow, green);
 	}
 	
