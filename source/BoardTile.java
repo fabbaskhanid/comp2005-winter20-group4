@@ -57,7 +57,7 @@ public class BoardTile extends JButton
 	public void setTargetChip(TargetChip targetChip)
 	{
 		this.targetChip = targetChip;
-		this.setBackground(targetChip.getColor());
+		this.add(targetChip.getIcon());
 	}
 
 	public TargetChip getTargetChip()
