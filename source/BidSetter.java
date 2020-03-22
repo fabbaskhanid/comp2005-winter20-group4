@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.Timer;
 import java.util.Collections;
+import java.util.concurrent.Semaphore;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 
 public class BidSetter
@@ -16,14 +19,19 @@ public class BidSetter
 
 	BidSetter(JFrame frame, Player a, Player b, Player c, Player d)
 	{
+		
 		this.bidPopUp = new JDialog(frame);
-		this.bidPopUp.setPreferredSize(new Dimension(800, 800));
+		this.bidPopUp.setPreferredSize(new Dimension(600, 400));
 		this.bidPopUp.pack();
 		this.timerFinished = false;
 		
 		startBidding(frame, a, b, c, d);
 
 	}
+
+
+
+
 
 	public void startBidding(JFrame frame, Player a, Player b, Player c, Player d)
 	{
@@ -35,28 +43,50 @@ public class BidSetter
 
 	public void time(JFrame frame, Player a, Player b, Player c, Player d)
 	{
-		final Counter counter = new Counter();
+
 		JPanel timePanel = new JPanel();
 		JLabel timeLabel = new JLabel("" + 60);
 		timePanel.add(timeLabel);
 		timeLabel.setFont(new Font("SansSerif", Font.BOLD, 25));
 		this.bidPopUp.add(timePanel, BorderLayout.WEST);
 
-		Timer timer = new Timer(1000, t ->
+		SwingWorker<Boolean, Integer> worker = new SwingWorker<Boolean, Integer>()
+		{
+			protected Boolean doInBackground() throws Exception
 			{
-				counter.count();
-				timeLabel.setText("" + (60 - counter.getCount()));
-				if(counter.getCount() == 60)
+				for(int i = 60; i > 0; i--)
 				{
-					((Timer) (t.getSource())).stop();
-					this.bidPopUp.dispose();
-					this.timerFinished = true;
-					updatePlayerOrder(a, b, c, d);
-				}					
-			});
-		timer.setInitialDelay(0);
-		timer.start();
-		
+					Thread.sleep(1000);
+					publish(i);
+				}
+				return true;
+			}
+
+
+			protected void process(List<Integer> chunks)
+			{
+				timeLabel.setText("" + chunks.get(chunks.size() - 1));
+			}
+
+			protected void done()
+			{
+				try
+				{
+					boolean status = get();
+					bidPopUp.dispose();
+					timerFinished = true;
+					updatePlayerOrder(a, b, c, d);		
+							
+				}
+				catch(InterruptedException e)
+				{}
+				catch(ExecutionException e)
+				{}
+			}
+			
+		};
+
+		worker.execute();
 		
 	}
 
