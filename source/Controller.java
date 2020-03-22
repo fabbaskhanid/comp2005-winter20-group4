@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.ExecutionException;
 
 public class Controller
 {
@@ -161,18 +163,46 @@ public class Controller
 			bidSection.add(bidButton);
 			bidButton.addActionListener(p ->
 			{
-				BidSetter bids = new BidSetter(this.gameWindow.getFrame(), this.gameSettings.getPlayers()[0], this.gameSettings.getPlayers()[1], this.gameSettings.getPlayers()[2], this.gameSettings.getPlayers()[3]);
-		//here is where the program crashes
-			
-				this.curPlayerOrder = bids.getPlayerOrder();
-				setBids(bidSection);
-				this.gameWindow.getFrame().revalidate();
-				this.gameWindow.getFrame().repaint();
-				
-				
-				
+				SwingWorker<BidSetter, Void> worker = new SwingWorker<BidSetter, Void>()
+				{
+		
+					protected BidSetter doInBackground() throws Exception
+					{
+						BidSetter bids = new BidSetter(gameWindow.getFrame(), gameSettings.getPlayers()[0], gameSettings.getPlayers()[1], gameSettings.getPlayers()[2], gameSettings.getPlayers()[3]);                	 
+						Thread.sleep(61000);
+						return bids;
+					}
+
+					protected void done()
+					{
+						try
+						{
+							BidSetter curBids = get();
+							curPlayerOrder = curBids.getPlayerOrder();
+							setBids(bidSection);				
+						
+							gameWindow.getFrame().revalidate();
+							gameWindow.getFrame().repaint();
+						}
+						catch(InterruptedException e)
+						{
+							System.out.println("iso");
+						}
+						catch(ExecutionException e)
+						{
+							System.out.println("iso");
+						}
+					}			
+				};
+				worker.execute();
 			});
-		}
+
+								
+		}			
+				
+						
+			
+		
 		gameSpace.add(bidSection, BorderLayout.EAST);
 		boardBase.add(this.gameSettings.getGameBoard().getBoardPanel());
 		gameSpace.add(boardBase, BorderLayout.WEST);
@@ -189,12 +219,14 @@ public class Controller
 	private void setBids(JPanel panel)
 	{
 		panel.removeAll();
-		System.out.println("flag");
+		
 		panel.setLayout(new GridLayout(5, 1));
-		panel.add(new JPanel());
+		JLabel bidLabel = new JLabel("Bid");
+		JPanel bidPanel = new JPanel();
+		bidPanel.add(bidLabel);
+		panel.add(bidLabel);
 		for(int i = 0; i < 4; i++)
 		{
-			System.out.println("" + this.curPlayerOrder.get(i).getName());
 			panel.add(new JLabel("" + this.curPlayerOrder.get(i).getBid()));
 		}
 	}
