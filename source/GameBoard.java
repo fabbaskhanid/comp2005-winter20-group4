@@ -35,11 +35,11 @@ public class GameBoard
 	public void setSimple(ColorScheme theme)
 	{
 		this.complex = false;
-		this.blueRobot = new Robot(0, 0, theme.getBlue());
-		this.yellowRobot = new Robot(10, 3, theme.getYellow());
-		this.lightGrayRobot = new Robot(8, 4, theme.getLightGray());
-		this.greenRobot = new Robot(13, 5, theme.getGreen());
-		this.redRobot = new Robot(3, 11, theme.getRed());
+		this.blueRobot = new Robot(0, 0, "assets/default/Blue_Robot.png");
+		this.yellowRobot = new Robot(10, 3, "assets/default/Yellow_Robot.png");
+		this.lightGrayRobot = new Robot(8, 4, "assets/default/Silver_Robot.png");
+		this.greenRobot = new Robot(13, 5, "assets/default/Green_Robot.png");
+		this.redRobot = new Robot(3, 11, "assets/default/Red_Robot.png");
 		
 		this.grid[0][0].removeAll();
 		this.grid[10][3].removeAll();
@@ -95,11 +95,11 @@ public class GameBoard
 	public void setComplex(ColorScheme theme)
 	{
 		this.complex = true;
-		this.greenRobot = new Robot(3, 4, theme.getGreen());
-		this.blueRobot = new Robot(3, 11, theme.getBlue());
-		this.redRobot = new Robot(9, 11, theme.getRed());
-		this.yellowRobot = new Robot(0, 14, theme.getYellow());
-		this.lightGrayRobot = new Robot(3, 14, theme.getLightGray());
+		this.greenRobot = new Robot(3, 4, "assets/default/Green_Robot.png");
+		this.blueRobot = new Robot(3, 11, "assets/default/Blue_Robot.png");
+		this.redRobot = new Robot(9, 11, "assets/default/Red_Robot.png");
+		this.yellowRobot = new Robot(0, 14, "assets/default/Yellow_Robot.png");
+		this.lightGrayRobot = new Robot(3, 14, "assets/default/Silver_Robot.png");
 
 		this.grid[3][4].removeAll();
 		this.grid[3][11].removeAll();
@@ -107,7 +107,7 @@ public class GameBoard
 		this.grid[0][14].removeAll();
 		this.grid[3][14].removeAll();
 		
-		this.grid[3][11].add(this.blueRobot.getIcon());
+		this.grid[3][11].add(this.blueRobot.getIcon();
 		this.grid[0][14].add(this.yellowRobot.getIcon());
 		this.grid[3][14].add(this.lightGrayRobot.getIcon());
 		this.grid[3][4].add(this.greenRobot.getIcon());
@@ -128,22 +128,6 @@ public class GameBoard
 		this.tiles[3][13].setTargetChip(new TargetChip(theme.getBlue(), "assets/default/Blue_Moon_TC.png"));
 		this.tiles[9][13].setTargetChip(new TargetChip(theme.getBlue(), "assets/default/Blue_Star_TC.png"));
 		this.tiles[5][14].setTargetChip(new TargetChip(theme.getRed(), "assets/default/Red_Star_TC.png"));
-
-//		this.tiles[1][3].setBackground(theme.getRed());
-//		this.tiles[10][1].setBackground(theme.getRed());
-//		this.tiles[6][4].setBackground(theme.getYellow());
-//		this.tiles[8][4].setBackground(theme.getBlue());
-//		this.tiles[13][5].setBackground(theme.getGreen());
-//		this.tiles[2][6].setBackground(theme.getGreen());
-//		this.tiles[3][6].setBackground(theme.getBlue());
-//		this.tiles[13][6].setBackground(theme.getYellow());
-//		this.tiles[2][9].setBackground(theme.getYellow());
-//		this.tiles[10][9].setBackground(theme.getYellow());
-//		this.tiles[12][11].setBackground(theme.getRed());
-//		this.tiles[3][12].setBackground(theme.getGreen());
-//		this.tiles[3][13].setBackground(theme.getBlue());
-//		this.tiles[9][13].setBackground(theme.getBlue());
-//		this.tiles[5][14].setBackground(theme.getRed());
 		
 
 
