@@ -21,7 +21,7 @@ public class BidSetter
 	{
 		
 		this.bidPopUp = new JDialog(frame);
-		this.bidPopUp.setPreferredSize(new Dimension(800, 800));
+		this.bidPopUp.setPreferredSize(new Dimension(600, 400));
 		this.bidPopUp.pack();
 		this.timerFinished = false;
 		
