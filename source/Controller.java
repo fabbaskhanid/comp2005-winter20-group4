@@ -143,7 +143,9 @@ public class Controller
 		this.gameWindow.getContentPane().removeAll();
 
 		JPanel gameSpace = new JPanel(new BorderLayout());
+		JPanel middlePanel = new JPanel(new BorderLayout());
 		JPanel names = new JPanel(new GridLayout(5, 2));
+		middlePanel.add(names, BorderLayout.CENTER);
 		JPanel boardBase = new JPanel();
 		names.add(new JLabel("Player Names  "));
 		names.add(new JLabel("  Target Chips"));
@@ -207,7 +209,7 @@ public class Controller
 		boardBase.add(this.gameSettings.getGameBoard().getBoardPanel());
 		this.gameSettings.getGameBoard().flipChip(this.gameSettings.getTheme());
 		gameSpace.add(boardBase, BorderLayout.WEST);
-		gameSpace.add(names, BorderLayout.CENTER);
+		gameSpace.add(middlePanel, BorderLayout.CENTER);
 		this.gameWindow.getContentPane().add(gameSpace);
 		
 		this.gameWindow.getFrame().setJMenuBar(this.menu.getMenuBar());
@@ -231,4 +233,20 @@ public class Controller
 			panel.add(new JLabel("" + this.curPlayerOrder.get(i).getBid()));
 		}
 	}
+
+	private void playRound()
+	{
+		for(int i = 0; i < 4; i++)
+		{
+			int count = 0;
+			boolean success = false;
+		//	while(success == false)
+			{
+			//	this.gameSettings.getGameBoard().makeMove();
+			}
+
+		}
+	}
+
+
 }

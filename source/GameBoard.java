@@ -303,4 +303,9 @@ public class GameBoard
 		
 	}
 
+	public void makeMove()
+	{
+		
+	}
+
 }
