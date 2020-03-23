@@ -205,6 +205,7 @@ public class Controller
 		
 		gameSpace.add(bidSection, BorderLayout.EAST);
 		boardBase.add(this.gameSettings.getGameBoard().getBoardPanel());
+		this.gameSettings.getGameBoard().flipChip(this.gameSettings.getTheme());
 		gameSpace.add(boardBase, BorderLayout.WEST);
 		gameSpace.add(names, BorderLayout.CENTER);
 		this.gameWindow.getContentPane().add(gameSpace);
