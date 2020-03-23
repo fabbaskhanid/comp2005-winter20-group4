@@ -4,15 +4,13 @@ import javax.swing.*;
 public class Robot
 {
 	private int[] coordinates;
-	private Color color;
 	private JPanel icon;
-	Robot(int startX, int startY, Color robotColor)
+	Robot(int startX, int startY, String file)
 	{
 		this.coordinates = new int[]{startX, startY};
-		this.color = robotColor;
 		icon = new JPanel();
-		JLabel botLabel = new JLabel("R");
-		icon.add(botLabel);
+		JLabel botLabel = new JLabel(new ImageIcon(file));
+		this.icon.add(botLabel);
 	}
 
 	public JPanel getIcon()
