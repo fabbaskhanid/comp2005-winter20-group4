@@ -9,11 +9,7 @@ public class GameBoard
 	private int col;
 	private BoardTile[][] grid;
 	private JPanel gameBoard;
-	private Robot blueRobot;
-	private Robot yellowRobot;
-	private Robot lightGrayRobot;
-	private Robot greenRobot;
-	private Robot redRobot;
+	private ArrayList<Robot> robots;
 	private Boolean complex;
 	private ArrayList<TargetChip> chips;
 	private TargetChip targetChip;
@@ -22,6 +18,7 @@ public class GameBoard
 
 	GameBoard()
 	{
+		this.robots = new ArrayList<Robot>();
 		this.row = 16;
 		this.col = 16;
 		this.gameBoard = new JPanel();
@@ -38,17 +35,23 @@ public class GameBoard
 	public void setSimple(ColorScheme theme)
 	{
 		this.complex = false;
-		this.blueRobot = new Robot(0, 0, "assets/default/Blue_Robot.png");
-		this.yellowRobot = new Robot(10, 3, "assets/default/Yellow_Robot.png");
-		this.lightGrayRobot = new Robot(8, 4, "assets/default/Silver_Robot.png");
-		this.greenRobot = new Robot(13, 5, "assets/default/Green_Robot.png");
-		this.redRobot = new Robot(3, 11, "assets/default/Red_Robot.png");
+		Robot blueRobot = new Robot(theme.getBlue(), 0, 0, "assets/default/Blue_Robot.png");
+		Robot yellowRobot = new Robot(theme.getYellow(), 10, 3, "assets/default/Yellow_Robot.png");
+		Robot lightGrayRobot = new Robot(theme.getLightGray(), 8, 4, "assets/default/Silver_Robot.png");
+		Robot greenRobot = new Robot(theme.getGreen(), 13, 5, "assets/default/Green_Robot.png");
+		Robot redRobot = new Robot(theme.getRed(), 3, 11, "assets/default/Red_Robot.png");
 
-		this.grid[0][0].add(this.blueRobot.getIcon());
-		this.grid[10][3].add(this.yellowRobot.getIcon());
-		this.grid[8][4].add(this.lightGrayRobot.getIcon());
-		this.grid[13][5].add(this.greenRobot.getIcon());
-		this.grid[3][11].add(this.redRobot.getIcon());
+		this.robots.add(greenRobot);
+		this.robots.add(blueRobot);
+		this.robots.add(yellowRobot);
+		this.robots.add(redRobot);
+		this.robots.add(lightGrayRobot);
+
+		this.grid[0][0].add(blueRobot.getIcon());
+		this.grid[10][3].add(yellowRobot.getIcon());
+		this.grid[8][4].add(lightGrayRobot.getIcon());
+		this.grid[13][5].add(greenRobot.getIcon());
+		this.grid[3][11].add(redRobot.getIcon());
 
 		TargetChip greenSun = new TargetChip(theme.getGreen(), "assets/default/Green_Sun_TC.png");
 		TargetChip redMoon = new TargetChip(theme.getRed(), "assets/default/Red_Moon_TC.png");
@@ -160,17 +163,22 @@ public class GameBoard
 	public void setComplex(ColorScheme theme)
 	{
 		this.complex = true;
-		this.greenRobot = new Robot(3, 4, "assets/default/Green_Robot.png");
-		this.blueRobot = new Robot(3, 11, "assets/default/Blue_Robot.png");
-		this.redRobot = new Robot(9, 11, "assets/default/Red_Robot.png");
-		this.yellowRobot = new Robot(0, 14, "assets/default/Yellow_Robot.png");
-		this.lightGrayRobot = new Robot(3, 14, "assets/default/Silver_Robot.png");
+		Robot greenRobot = new Robot(theme.getGreen(), 3, 4, "assets/default/Green_Robot.png");
+		Robot blueRobot = new Robot(theme.getBlue(), 3, 11, "assets/default/Blue_Robot.png");
+		Robot redRobot = new Robot(theme.getRed(), 9, 11, "assets/default/Red_Robot.png");
+		Robot yellowRobot = new Robot(theme.getYellow(), 0, 14, "assets/default/Yellow_Robot.png");
+		Robot lightGrayRobot = new Robot(theme.getLightGray(), 3, 14, "assets/default/Silver_Robot.png");
 
-		this.grid[3][11].add(this.blueRobot.getIcon());
-		this.grid[0][14].add(this.yellowRobot.getIcon());
-		this.grid[3][14].add(this.lightGrayRobot.getIcon());
-		this.grid[3][4].add(this.greenRobot.getIcon());
-		this.grid[9][11].add(this.redRobot.getIcon());
+		this.robots.add(greenRobot);
+		this.robots.add(blueRobot);
+		this.robots.add(yellowRobot);
+		this.robots.add(redRobot);
+
+		this.grid[3][11].add(blueRobot.getIcon());
+		this.grid[0][14].add(yellowRobot.getIcon());
+		this.grid[3][14].add(lightGrayRobot.getIcon());
+		this.grid[3][4].add(greenRobot.getIcon());
+		this.grid[9][11].add(redRobot.getIcon());
 
 		TargetChip redMoon = new TargetChip(theme.getRed(), "assets/default/Red_Moon_TC.png");
 		TargetChip redPlanet = new TargetChip(theme.getRed(), "assets/default/Red_Planet_TC.png");
@@ -269,43 +277,92 @@ public class GameBoard
 		return this.gameBoard;
 	}
 
-	public void getRobots()
+	public ArrayList<Robot> getRobots()
 	{
-		Robot[] robots = new Robot[]{this.yellowRobot, this.greenRobot, this.blueRobot, this.redRobot, this.lightGrayRobot};
+		return this.robots;
 	}
 
 	public void flipChip(ColorScheme theme)
 	{
 		Random rand = new Random();
 		int chipInd = rand.nextInt(16) + 1;
-		
+		System.out.println(chipInd);
 		switch (chipInd)
 		{
 			case 1:	 targetChip = new TargetChip(theme.getRed(), "assets/default/Red_Moon_TC.png");
+				break;
 			case 2:	targetChip = new TargetChip(theme.getRed(), "assets/default/Red_Planet_TC.png");
+				break;
 			case 3:	targetChip = new TargetChip(theme.getYellow(), "assets/default/Yellow_Star_TC.png");
+				break;
 			case 4:	targetChip = new TargetChip(theme.getBlue(), "assets/default/Blue_Sun_TC.png");
+				break;
 			case 5:	targetChip = new TargetChip(theme.getGreen(), "assets/default/Green_Star_TC.png");
+				break;		
 			case 6:	targetChip = new TargetChip(theme.getGreen(), "assets/default/Green_Sun_TC.png");
+				break;	
 			case 7:	targetChip = new TargetChip(theme.getBlue(), "assets/default/Blue_Planet_TC.png");
+				break;
 			case 8:	targetChip = new TargetChip(theme.getYellow(), "assets/default/Yellow_Moon_TC.png");
+				break;
 			case 9:	targetChip = new TargetChip(theme.getYellow(), "assets/default/Yellow_Sun_TC.png");
+				break;
 			case 10:	targetChip = new TargetChip(theme.getYellow(), "assets/default/Yellow_Planet_TC.png");
+				break;
 			case 11:	targetChip = new TargetChip(theme.getRed(), "assets/default/Red_Sun_TC.png");
+				break;
 			case 12:	targetChip = new TargetChip(theme.getGreen(), "assets/default/Green_Moon_TC.png");
+				break;
 			case 13:	targetChip = new TargetChip(theme.getGreen(), "assets/default/Green_Planet_TC.png");
+				break;
 			case 14:	targetChip = new TargetChip(theme.getBlue(), "assets/default/Blue_Moon_TC.png");
+				break;
 			case 15:	targetChip = new TargetChip(theme.getBlue(), "assets/default/Blue_Star_TC.png");
+				break;
 			case 16:	targetChip = new TargetChip(theme.getRed(), "assets/default/Red_Star_TC.png");
-		}
+				break;
+		}	
 
 		this.grid[7][7].add(targetChip.getIcon());
 		
 	}
 
-	public void makeMove()
+	public void makeMove(Player player, String dir)
 	{
-		
+		player.move();
+		Color targetColor = this.targetChip.getColor();
+		Robot curRobot = this.robots.get(0);
+		for(int i = 0; i < 5; i++)
+		{
+			if(this.robots.get(i).getColor() == targetColor)
+			{
+				curRobot = this.robots.get(i);
+			}
+		}
+		switch (dir)
+		{
+			case "N":	
+			for(int i = curRobot.getCoordinates()[1] - 1; i > -1; i--)
+			{
+				if((grid[curRobot.getCoordinates()[0]][i].getWall() != "SB") || (grid[curRobot.getCoordinates()[0]][i].getWall() !="NB"))
+				{
+					curRobot.setCoordinates(curRobot.getCoordinates()[0], i);
+					this.grid[curRobot.getCoordinates()[0]][i].add(curRobot.getIcon());
+				}
+			}
+			break;
+			case "S":
+			break;	
+			case "E":
+			break;	
+			case "W":
+			break;	
+		}
+	}
+
+	public boolean checkSuccess()
+	{
+		return false;
 	}
 
 }

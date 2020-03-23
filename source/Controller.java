@@ -3,6 +3,10 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.ExecutionException;
+import javax.swing.plaf.basic.BasicArrowButton;
+import java.util.concurrent.CountDownLatch;
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 public class Controller
 {
@@ -182,9 +186,10 @@ public class Controller
 							BidSetter curBids = get();
 							curPlayerOrder = curBids.getPlayerOrder();
 							setBids(bidSection);				
-						
+							playRound(middlePanel);
 							gameWindow.getFrame().revalidate();
 							gameWindow.getFrame().repaint();
+							
 						}
 						catch(InterruptedException e)
 						{
@@ -234,18 +239,108 @@ public class Controller
 		}
 	}
 
-	private void playRound()
+	private void playRound(JPanel middlePanel)
 	{
-		for(int i = 0; i < 4; i++)
+		BorderLayout layout = new BorderLayout();
+		JPanel arrowPanel = new JPanel(layout);
+		middlePanel.add(arrowPanel, BorderLayout.SOUTH);
+		BasicArrowButton eastButton = new BasicArrowButton(BasicArrowButton.EAST);
+		BasicArrowButton northButton = new BasicArrowButton(BasicArrowButton.NORTH);
+		BasicArrowButton westButton = new BasicArrowButton(BasicArrowButton.WEST);
+		BasicArrowButton southButton = new BasicArrowButton(BasicArrowButton.SOUTH);
+		arrowPanel.add(eastButton, layout.EAST);
+		arrowPanel.add(westButton, layout.WEST);
+		arrowPanel.add(southButton, layout.SOUTH);
+		arrowPanel.add(northButton, layout.CENTER);
+		gameWindow.getFrame().revalidate();
+		gameWindow.getFrame().repaint();
+
+		// player 1 turn:
+
+		Player player = curPlayerOrder.get(0);
+
+		this.gameWindow.getFrame().revalidate();
+		this.gameWindow.getFrame().repaint();
+
+		eastButton.addActionListener(p ->
 		{
-			int count = 0;
-			boolean success = false;
-		//	while(success == false)
+			gameSettings.getGameBoard().makeMove(player, "E");
+			gameWindow.getFrame().revalidate();
+			gameWindow.getFrame().repaint();
+		});
+
+		westButton.addActionListener(p ->
+		{		
+			gameSettings.getGameBoard().makeMove(player, "W");
+			gameWindow.getFrame().revalidate();
+			gameWindow.getFrame().repaint();
+		});
+
+		southButton.addActionListener(p ->
+		{
+			gameSettings.getGameBoard().makeMove(player, "S");
+			gameWindow.getFrame().revalidate();
+			gameWindow.getFrame().repaint();
+			
+		});
+
+		northButton.addActionListener(p ->
+		{
+			gameSettings.getGameBoard().makeMove(player, "N");
+			gameWindow.getFrame().revalidate();
+			gameWindow.getFrame().repaint();
+		});
+					
+		SwingWorker<Boolean, Integer> turnWorker = new SwingWorker<Boolean, Integer>()
+		{
+			protected Boolean doInBackground() throws Exception
 			{
-			//	this.gameSettings.getGameBoard().makeMove();
+				for(int i = 0; i < 4; i++)
+				{	
+					publish(i);
+					Player player = curPlayerOrder.get(i);
+					
+					while(player.isSuccessful() == false)
+					{
+						Thread.sleep(250);
+
+					}
+
+
+				}
+				return true;
 			}
 
-		}
+			protected void process(List<Integer> chunks)
+			{
+				int value = chunks.get(chunks.size() - 1);
+				if(value != 0)
+				{
+					arrowPanel.remove(layout.getLayoutComponent(BorderLayout.NORTH));
+				}
+				arrowPanel.add(new JLabel("Turn:" + player.getName()), layout.NORTH);
+				gameWindow.getFrame().revalidate();
+				gameWindow.getFrame().repaint();	
+			}
+
+			protected void done()
+			{
+				try
+				{
+					if(get() == true)
+					{}
+				}
+				catch(InterruptedException e)
+				{}
+				catch(ExecutionException e)
+				{}
+					
+			}
+
+			
+
+		};	
+		turnWorker.execute();	
 	}
 
 

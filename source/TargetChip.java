@@ -1,13 +1,16 @@
 import java.awt.*;
 import javax.swing.*;
+
 public class TargetChip
 {
 	private Color color;
 	private JPanel iconPanel;
+	private String fileName;
 
 	TargetChip(Color chipColor, String file)
 	{
 		this.color = chipColor;
+		this.fileName = file;
 		setIcon(file);
 	}
 
@@ -26,5 +29,10 @@ public class TargetChip
 	public JPanel getIcon()
 	{
 		return this.iconPanel;
+	}
+
+	public String getFileName()
+	{
+		return this.fileName;
 	}
 }
