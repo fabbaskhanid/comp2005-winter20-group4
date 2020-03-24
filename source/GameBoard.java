@@ -53,6 +53,12 @@ public class GameBoard
 		this.grid[13][5].add(greenRobot.getIcon());
 		this.grid[3][11].add(redRobot.getIcon());
 
+		this.grid[0][0].occupy(blueRobot);
+		this.grid[10][3].occupy(yellowRobot);
+		this.grid[8][4].occupy(lightGrayRobot);
+		this.grid[13][5].occupy(greenRobot);
+		this.grid[3][11].occupy(redRobot);
+
 		TargetChip greenSun = new TargetChip(theme.getGreen(), "assets/default/Green_Sun_TC.png");
 		TargetChip redMoon = new TargetChip(theme.getRed(), "assets/default/Red_Moon_TC.png");
 		TargetChip yellowStar = new TargetChip(theme.getYellow(), "assets/default/Yellow_Star_TC.png");
@@ -344,18 +350,70 @@ public class GameBoard
 			case "N":	
 			for(int i = curRobot.getCoordinates()[1] - 1; i > -1; i--)
 			{
-				if((grid[curRobot.getCoordinates()[0]][i].getWall() != "SB") || (grid[curRobot.getCoordinates()[0]][i].getWall() !="NB"))
+
+				if(((i != 0) && (grid[curRobot.getCoordinates()[0]][i - 1].getWall() != "SB")) || (grid[curRobot.getCoordinates()[0]][i].getWall() !="NB") || (grid[curRobot.getCoordinates()[0]][i].isOccupied()))
 				{
+					this.grid[curRobot.getCoordinates()[0]][i + 1].leave();
 					curRobot.setCoordinates(curRobot.getCoordinates()[0], i);
 					this.grid[curRobot.getCoordinates()[0]][i].add(curRobot.getIcon());
+					this.grid[curRobot.getCoordinates()[0]][i].occupy(curRobot);
+				}
+				else
+				{
+					break;
 				}
 			}
 			break;
 			case "S":
+			for(int i = curRobot.getCoordinates()[1] + 1; i < 16; i++)
+			{
+
+				if((grid[curRobot.getCoordinates()[0]][i].getWall() != "SB") || ((i != 15) && (grid[curRobot.getCoordinates()[0]][i + 1].getWall() !="NB")) || (grid[curRobot.getCoordinates()[0]][i].isOccupied()))
+				{
+					this.grid[curRobot.getCoordinates()[0]][i - 1].leave();
+					curRobot.setCoordinates(curRobot.getCoordinates()[0], i);
+					this.grid[curRobot.getCoordinates()[0]][i].add(curRobot.getIcon());
+					this.grid[curRobot.getCoordinates()[0]][i].occupy(curRobot);
+				}
+				else
+				{
+					break;
+				}
+			}
 			break;	
 			case "E":
+			for(int i = curRobot.getCoordinates()[0] + 1; i < 16; i++)
+			{
+
+				if((grid[i][curRobot.getCoordinates()[1]].getWall() != "EB") || ((i != 15) && (grid[i + 1][curRobot.getCoordinates()[1]].getWall() !="WB")) || (grid[i][curRobot.getCoordinates()[1]].isOccupied()))
+				{
+					this.grid[i][curRobot.getCoordinates()[1]].leave();
+					curRobot.setCoordinates(curRobot.getCoordinates()[0], i);
+					this.grid[i][curRobot.getCoordinates()[1]].add(curRobot.getIcon());
+					this.grid[i][curRobot.getCoordinates()[1]].occupy(curRobot);
+				}
+				else
+				{
+					break;
+				}
+			}
 			break;	
 			case "W":
+			for(int i = curRobot.getCoordinates()[0] - 1; i > -1; i--)
+			{
+
+				if(((i != 0) && (grid[i - 1][curRobot.getCoordinates()[1]].getWall() != "EB")) || (grid[i][curRobot.getCoordinates()[1]].getWall() !="WB") || (grid[i][curRobot.getCoordinates()[1]].isOccupied()))
+				{
+					this.grid[i][curRobot.getCoordinates()[1]].leave();
+					curRobot.setCoordinates(curRobot.getCoordinates()[0], i);
+					this.grid[i][curRobot.getCoordinates()[1]].add(curRobot.getIcon());
+					this.grid[i][curRobot.getCoordinates()[1]].occupy(curRobot);
+				}
+				else
+				{
+					break;
+				}
+			}
 			break;	
 		}
 	}
