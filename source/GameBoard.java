@@ -267,7 +267,7 @@ public class GameBoard
 			{
 				BoardTile panel = new BoardTile(j, i);
 				panel.setPreferredSize(new Dimension(40, 40));
-				panel.setBorder(BorderFactory.createLineBorder(Color.black));
+				panel.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
 				this.gameBoard.add(panel);
 				this.grid[j][i] = panel; 
 				j++;
