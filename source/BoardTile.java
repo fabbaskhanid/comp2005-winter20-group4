@@ -127,43 +127,43 @@ public class BoardTile extends JPanel
 	
 	public void setWallEast()
 	{
-		this.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 8, Color.BLACK));
+		this.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 8, Color.BLACK));
 		border = true;
 	}
 	
 	public void setWallSouth()
 	{
-		this.setBorder(BorderFactory.createMatteBorder(0, 0, 8, 0, Color.BLACK));
+		this.setBorder(BorderFactory.createMatteBorder(1, 1, 8, 1, Color.BLACK));
 		border = true;
 	}
 	
 	public void setWallWest()
 	{
-		this.setBorder(BorderFactory.createMatteBorder(0, 8, 0, 0, Color.BLACK));
+		this.setBorder(BorderFactory.createMatteBorder(1, 8, 1, 1, Color.BLACK));
 		border = true;
 	}
 	
 	public void setWallNorthEast()
 	{
-		this.setBorder(BorderFactory.createMatteBorder(8, 0, 0, 8, Color.BLACK));
+		this.setBorder(BorderFactory.createMatteBorder(8, 1, 1, 8, Color.BLACK));
 		normalWall = true;
 	}
 	
 	public void setWallNorthWest()
 	{
-		this.setBorder(BorderFactory.createMatteBorder(8, 8, 0, 0, Color.BLACK));
+		this.setBorder(BorderFactory.createMatteBorder(8, 8, 1, 1, Color.BLACK));
 		normalWall = true;
 	}
 	
 	public void setWallSouthEast()
 	{
-		this.setBorder(BorderFactory.createMatteBorder(0, 0, 8, 8, Color.BLACK));
+		this.setBorder(BorderFactory.createMatteBorder(1, 1, 8, 8, Color.BLACK));
 		normalWall = true;
 	}
 	
 	public void setWallSouthWest()
 	{
-		this.setBorder(BorderFactory.createMatteBorder(0, 8, 8, 0, Color.BLACK));
+		this.setBorder(BorderFactory.createMatteBorder(1, 8, 8, 1, Color.BLACK));
 		normalWall = true;
 	}
 	
