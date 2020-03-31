@@ -348,10 +348,10 @@ public class GameBoard
 		switch (dir)
 		{
 			case "N":	
-			for(int i = curRobot.getCoordinates()[1] - 1; i > -1; i--)
+			for(int i = curRobot.getCoordinates()[1] - 1; i >= -1; i--)
 			{
 
-				if(((i != 0) && (grid[curRobot.getCoordinates()[0]][i - 1].getWall() != "SB")) || (grid[curRobot.getCoordinates()[0]][i].getWall() !="NB") || (grid[curRobot.getCoordinates()[0]][i].isOccupied()))
+				if(((i != -1) && (grid[curRobot.getCoordinates()[0]][i].getWall() != "SB")) && (grid[curRobot.getCoordinates()[0]][i + 1].getWall() !="NB") && (grid[curRobot.getCoordinates()[0]][i].isOccupied() == false))
 				{
 					this.grid[curRobot.getCoordinates()[0]][i + 1].leave();
 					curRobot.setCoordinates(curRobot.getCoordinates()[0], i);
@@ -365,10 +365,10 @@ public class GameBoard
 			}
 			break;
 			case "S":
-			for(int i = curRobot.getCoordinates()[1] + 1; i < 16; i++)
+			for(int i = curRobot.getCoordinates()[1] + 1; i < 17; i++)
 			{
-
-				if((grid[curRobot.getCoordinates()[0]][i].getWall() != "SB") || ((i != 15) && (grid[curRobot.getCoordinates()[0]][i + 1].getWall() !="NB")) || (grid[curRobot.getCoordinates()[0]][i].isOccupied()))
+				System.out.println("this grid square has wall:" + (grid[curRobot.getCoordinates()[0]][i].getWall()));
+				if((grid[curRobot.getCoordinates()[0]][i - 1].getWall() != "SB") && ((i != 16) && (grid[curRobot.getCoordinates()[0]][i].getWall() !="NB")) && (grid[curRobot.getCoordinates()[0]][i].isOccupied() == false))
 				{
 					this.grid[curRobot.getCoordinates()[0]][i - 1].leave();
 					curRobot.setCoordinates(curRobot.getCoordinates()[0], i);
