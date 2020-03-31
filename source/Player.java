@@ -9,6 +9,8 @@ public class Player
 	private int targetChips;
 
 	private int curBid;
+	private boolean success;
+	private int moveCount;
 
 	Player(String name)
 	{
@@ -16,7 +18,8 @@ public class Player
 		this.name = name;
 		// target chips is initialized to 0
 		this.targetChips = 0;
-
+		this.success = false;
+		this.moveCount = 0;
 		this.curBid = 0;
 	}
 
@@ -46,5 +49,20 @@ public class Player
 	public int getBid()
 	{
 		return this.curBid;
+	}
+
+	public Boolean isSuccessful()
+	{
+		return this.success;
+	}
+
+	public void move()
+	{
+		this.moveCount++;
+	}
+
+	public int getMoveCount()
+	{
+		return this.moveCount;
 	}
 }
