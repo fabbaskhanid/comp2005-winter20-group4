@@ -15,10 +15,12 @@ public class BidSetter
 	private JDialog bidPopUp;
 	private boolean timerFinished;
 	private ArrayList<Player> playerOrder;
+	private int time;
 
 
 	BidSetter(JFrame frame, Player a, Player b, Player c, Player d)
 	{
+		this.time = 15;
 		
 		this.bidPopUp = new JDialog(frame);
 		this.bidPopUp.setPreferredSize(new Dimension(600, 400));
@@ -54,7 +56,7 @@ public class BidSetter
 		{
 			protected Boolean doInBackground() throws Exception
 			{
-				for(int i = 60; i > 0; i--)
+				for(int i = time; i > 0; i--)
 				{
 					Thread.sleep(1000);
 					publish(i);

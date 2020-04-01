@@ -14,6 +14,7 @@ public class Controller
 	private Window gameWindow;
 	private GameMenu menu;
 	private ArrayList<Player> curPlayerOrder;
+	private JLabel welcomeLabel, playerLabel;
 
 	Controller()
 	{
@@ -27,7 +28,10 @@ public class Controller
 	{ 
 		this.gameWindow.getFrame().setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		JPanel settingsWindow = new JPanel(new BorderLayout());
-		settingsWindow.add(new JLabel("<html>WELCOME TO RICOCHET ROBOTS!<br/>PLEASE SELECT THE DIFFICULTY LEVEL:</html>"), BorderLayout.NORTH);
+		welcomeLabel = new JLabel("<html>WELCOME TO RICOCHET ROBOTS!<br/>PLEASE SELECT A DIFFICULTY LEVEL:</html>");
+		welcomeLabel.setFont(new Font("Impact", Font.PLAIN, 18));
+		welcomeLabel.setHorizontalAlignment(JLabel.CENTER);
+		settingsWindow.add(welcomeLabel, BorderLayout.CENTER);
 		JButton easyButton = new JButton("EASY");
 		easyButton.addActionListener(p -> 
 		{
@@ -57,7 +61,9 @@ public class Controller
 		
 		this.gameWindow.getContentPane().removeAll();
 		JPanel nameWindow = new JPanel(new BorderLayout());
-		nameWindow.add(new JLabel("PLEASE ENTER EACH PLAYER'S NAME\n(up to 4 players)"), BorderLayout.NORTH);
+		playerLabel = new JLabel("PLEASE ENTER EACH PLAYER'S NAME\n (up to 4 players):");
+		playerLabel.setFont(new Font("Impact", Font.PLAIN, 18));
+		nameWindow.add(playerLabel, BorderLayout.NORTH);
 		JPanel entries = new JPanel(new GridLayout(4, 2));
 		String[] labels = {"Player 1: ", "Player 2: ", "Player 3: ", "Player 4: "};
 		JTextField[] textFields = new JTextField[4];
@@ -175,7 +181,7 @@ public class Controller
 					protected BidSetter doInBackground() throws Exception
 					{
 						BidSetter bids = new BidSetter(gameWindow.getFrame(), gameSettings.getPlayers()[0], gameSettings.getPlayers()[1], gameSettings.getPlayers()[2], gameSettings.getPlayers()[3]);                	 
-						Thread.sleep(61000);
+						Thread.sleep(16000);
 						return bids;
 					}
 
@@ -255,7 +261,7 @@ public class Controller
 		gameWindow.getFrame().revalidate();
 		gameWindow.getFrame().repaint();
 
-		// player 1 turn:
+		
 
 		Player player = curPlayerOrder.get(0);
 
