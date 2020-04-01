@@ -51,6 +51,11 @@ public class Player
 		return this.curBid;
 	}
 
+	public void success()
+	{
+		this.success = true;
+	}
+
 	public Boolean isSuccessful()
 	{
 		return this.success;

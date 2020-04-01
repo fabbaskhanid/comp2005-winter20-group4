@@ -181,7 +181,7 @@ public class Controller
 					protected BidSetter doInBackground() throws Exception
 					{
 						BidSetter bids = new BidSetter(gameWindow.getFrame(), gameSettings.getPlayers()[0], gameSettings.getPlayers()[1], gameSettings.getPlayers()[2], gameSettings.getPlayers()[3]);                	 
-						Thread.sleep(61000);
+						Thread.sleep(16000);
 						return bids;
 					}
 
@@ -261,7 +261,7 @@ public class Controller
 		gameWindow.getFrame().revalidate();
 		gameWindow.getFrame().repaint();
 
-		// player 1 turn:
+		
 
 		Player player = curPlayerOrder.get(0);
 

@@ -22,6 +22,7 @@ public class BoardTile extends JPanel
 		this.adjacentTiles = new AdjacentTiles();
 		this.wall = null;
 		this.robot = null;
+		this.targetChip = null;
 
 	}
 

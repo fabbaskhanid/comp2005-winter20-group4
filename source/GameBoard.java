@@ -13,6 +13,7 @@ public class GameBoard
 	private Boolean complex;
 	private ArrayList<TargetChip> chips;
 	private TargetChip targetChip;
+	private Robot curRobot;
 
 
 
@@ -58,6 +59,17 @@ public class GameBoard
 		this.grid[8][4].occupy(lightGrayRobot);
 		this.grid[13][5].occupy(greenRobot);
 		this.grid[3][11].occupy(redRobot);
+
+		this.grid[3][11].add(blueRobot.getIcon());
+		blueRobot.getIcon().addActionListener(p -> setCurRobot(blueRobot));
+		this.grid[0][14].add(yellowRobot.getIcon());
+		yellowRobot.getIcon().addActionListener(p -> setCurRobot(yellowRobot));
+		this.grid[3][14].add(lightGrayRobot.getIcon());
+		lightGrayRobot.getIcon().addActionListener(p -> setCurRobot(lightGrayRobot));
+		this.grid[3][4].add(greenRobot.getIcon());
+		greenRobot.getIcon().addActionListener(p-> setCurRobot(greenRobot));
+		this.grid[9][11].add(redRobot.getIcon());
+		redRobot.getIcon().addActionListener(p -> setCurRobot(redRobot));
 
 		TargetChip greenSun = new TargetChip(theme.getGreen(), "assets/default/Green_Sun_TC.png");
 		TargetChip redMoon = new TargetChip(theme.getRed(), "assets/default/Red_Moon_TC.png");
@@ -181,10 +193,16 @@ public class GameBoard
 		this.robots.add(redRobot);
 
 		this.grid[3][11].add(blueRobot.getIcon());
+		blueRobot.getIcon().addActionListener(p -> setCurRobot(blueRobot));
 		this.grid[0][14].add(yellowRobot.getIcon());
+		yellowRobot.getIcon().addActionListener(p -> setCurRobot(yellowRobot));
 		this.grid[3][14].add(lightGrayRobot.getIcon());
+		lightGrayRobot.getIcon().addActionListener(p -> setCurRobot(lightGrayRobot));
 		this.grid[3][4].add(greenRobot.getIcon());
+		greenRobot.getIcon().addActionListener(p-> setCurRobot(greenRobot));
 		this.grid[9][11].add(redRobot.getIcon());
+		redRobot.getIcon().addActionListener(p -> setCurRobot(redRobot));
+
 
 		TargetChip redMoon = new TargetChip(theme.getRed(), "assets/default/Red_Moon_TC.png");
 		TargetChip redPlanet = new TargetChip(theme.getRed(), "assets/default/Red_Planet_TC.png");
@@ -221,9 +239,6 @@ public class GameBoard
 		this.chips.add(yellowSun);
 	//	this.chips.add(vortex);
 		
-
-
-
 		this.grid[1][3].setTargetChip(redMoon);
 		this.grid[10][1].setTargetChip(redPlanet);
 		this.grid[6][4].setTargetChip(yellowStar);
@@ -337,75 +352,93 @@ public class GameBoard
 	{
 		player.move();
 		Color targetColor = this.targetChip.getColor();
-		Robot curRobot = this.robots.get(0);
-		for(int i = 0; i < 5; i++)
+		if(this.curRobot == null)
 		{
-			if(this.robots.get(i).getColor() == targetColor)
+			this.curRobot = this.robots.get(0);
+			for(int i = 0; i < 5; i++)
 			{
-				curRobot = this.robots.get(i);
+				if(this.robots.get(i).getColor() == targetColor)
+				{
+					curRobot = this.robots.get(i);
+				}
 			}
 		}
 		switch (dir)
 		{
-			case "N":	
-			for(int i = curRobot.getCoordinates()[1] - 1; i >= -1; i--)
-			{
+			case "N":
 
-				if(((i != -1) && (grid[curRobot.getCoordinates()[0]][i].getWall() != "SB")) && (grid[curRobot.getCoordinates()[0]][i + 1].getWall() !="NB") && (grid[curRobot.getCoordinates()[0]][i].isOccupied() == false))
-				{
-					this.grid[curRobot.getCoordinates()[0]][i + 1].leave();
-					curRobot.setCoordinates(curRobot.getCoordinates()[0], i);
-					this.grid[curRobot.getCoordinates()[0]][i].add(curRobot.getIcon());
-					this.grid[curRobot.getCoordinates()[0]][i].occupy(curRobot);
-				}
-				else
-				{
-					break;
-				}
+			for(int i = curRobot.getCoordinates()[1] - 1; i > -1; i--)
+			{	
+					if((this.curRobot.getColor() == this.targetChip.getColor()) && (grid[curRobot.getCoordinates()[0]][i].getTargetChip() == this.targetChip))
+					{
+						player.success();
+						return;
+					}
+
+					if(((grid[curRobot.getCoordinates()[0]][i].getWall() != "SB")) && (grid[curRobot.getCoordinates()[0]][i + 1].getWall() !="NB") && (grid[curRobot.getCoordinates()[0]][i].isOccupied() == false) && (grid[curRobot.getCoordinates()[0]][i].getTargetChip() == null))
+					{
+						this.grid[curRobot.getCoordinates()[0]][i + 1].leave();
+						curRobot.setCoordinates(curRobot.getCoordinates()[0], i);
+						this.grid[curRobot.getCoordinates()[0]][i].add(curRobot.getIcon());
+						this.grid[curRobot.getCoordinates()[0]][i].occupy(curRobot);
+					}
+					else
+					{
+						break;
+					}
+				
 			}
 			break;
 			case "S":
-			for(int i = curRobot.getCoordinates()[1] + 1; i < 17; i++)
+			for(int i = curRobot.getCoordinates()[1] + 1; i < 16; i++)
 			{
-				System.out.println("this grid square has wall:" + (grid[curRobot.getCoordinates()[0]][i].getWall()));
-				if((grid[curRobot.getCoordinates()[0]][i - 1].getWall() != "SB") && ((i != 16) && (grid[curRobot.getCoordinates()[0]][i].getWall() !="NB")) && (grid[curRobot.getCoordinates()[0]][i].isOccupied() == false))
-				{
-					this.grid[curRobot.getCoordinates()[0]][i - 1].leave();
-					curRobot.setCoordinates(curRobot.getCoordinates()[0], i);
-					this.grid[curRobot.getCoordinates()[0]][i].add(curRobot.getIcon());
-					this.grid[curRobot.getCoordinates()[0]][i].occupy(curRobot);
-				}
-				else
-				{
-					break;
-				}
+					if((this.curRobot.getColor() == this.targetChip.getColor()) && (grid[curRobot.getCoordinates()[0]][i].getTargetChip() == this.targetChip))
+					{
+						player.success();
+						return;
+					}
+					System.out.println("this grid square has wall:" + (grid[curRobot.getCoordinates()[0]][i].getWall()));
+					if((grid[curRobot.getCoordinates()[0]][i - 1].getWall() != "SB") && (grid[curRobot.getCoordinates()[0]][i].getWall() !="NB") && (grid[curRobot.getCoordinates()[0]][i].isOccupied() == false) && (grid[curRobot.getCoordinates()[0]][i].getTargetChip() == null))
+					{
+						this.grid[curRobot.getCoordinates()[0]][i - 1].leave();
+						curRobot.setCoordinates(curRobot.getCoordinates()[0], i);
+						this.grid[curRobot.getCoordinates()[0]][i].add(curRobot.getIcon());
+						this.grid[curRobot.getCoordinates()[0]][i].occupy(curRobot);
+					}
+					else
+					{
+						break;
+					}
+				
 			}
 			break;	
 			case "E":
 			for(int i = curRobot.getCoordinates()[0] + 1; i < 16; i++)
 			{
-
-				if((grid[i][curRobot.getCoordinates()[1]].getWall() != "EB") || ((i != 15) && (grid[i + 1][curRobot.getCoordinates()[1]].getWall() !="WB")) || (grid[i][curRobot.getCoordinates()[1]].isOccupied()))
-				{
-					this.grid[i][curRobot.getCoordinates()[1]].leave();
-					curRobot.setCoordinates(curRobot.getCoordinates()[0], i);
-					this.grid[i][curRobot.getCoordinates()[1]].add(curRobot.getIcon());
-					this.grid[i][curRobot.getCoordinates()[1]].occupy(curRobot);
-				}
-				else
-				{
-					break;
-				}
+				
+					if((grid[i - 1][curRobot.getCoordinates()[1]].getWall() != "EB") && ((i != 16) && (grid[i][curRobot.getCoordinates()[1]].getWall() !="WB")) && (grid[i][curRobot.getCoordinates()[1]].isOccupied() == false) && (grid[i][curRobot.getCoordinates()[1]].getTargetChip() == null))
+					{
+						this.grid[i - 1][curRobot.getCoordinates()[1]].leave();
+						curRobot.setCoordinates(i, curRobot.getCoordinates()[1]);
+						this.grid[i][curRobot.getCoordinates()[1]].add(curRobot.getIcon());
+						this.grid[i][curRobot.getCoordinates()[1]].occupy(curRobot);
+					}
+					else
+					{
+						break;
+					}
+				
+				
 			}
 			break;	
 			case "W":
 			for(int i = curRobot.getCoordinates()[0] - 1; i > -1; i--)
 			{
 
-				if(((i != 0) && (grid[i - 1][curRobot.getCoordinates()[1]].getWall() != "EB")) || (grid[i][curRobot.getCoordinates()[1]].getWall() !="WB") || (grid[i][curRobot.getCoordinates()[1]].isOccupied()))
+				if(((grid[i][curRobot.getCoordinates()[1]].getWall() != "EB")) && (grid[i + 1][curRobot.getCoordinates()[1]].getWall() !="WB") && (grid[i][curRobot.getCoordinates()[1]].isOccupied() == false) && (grid[i][curRobot.getCoordinates()[1]].getTargetChip() == null))
 				{
-					this.grid[i][curRobot.getCoordinates()[1]].leave();
-					curRobot.setCoordinates(curRobot.getCoordinates()[0], i);
+					this.grid[i + 1][curRobot.getCoordinates()[1]].leave();
+					curRobot.setCoordinates(i, curRobot.getCoordinates()[1]);
 					this.grid[i][curRobot.getCoordinates()[1]].add(curRobot.getIcon());
 					this.grid[i][curRobot.getCoordinates()[1]].occupy(curRobot);
 				}
@@ -421,6 +454,11 @@ public class GameBoard
 	public boolean checkSuccess()
 	{
 		return false;
+	}
+
+	private void setCurRobot(Robot robot)
+	{
+		this.curRobot = robot;
 	}
 
 }
