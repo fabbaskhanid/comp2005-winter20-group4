@@ -6,12 +6,19 @@ public class TargetChip
 	private Color color;
 	private JPanel iconPanel;
 	private String fileName;
+	private int index;
 
-	TargetChip(Color chipColor, String file)
+	TargetChip(int ind, Color chipColor, String file)
 	{
+		this.index = ind;
 		this.color = chipColor;
 		this.fileName = file;
 		setIcon(file);
+	}
+
+	public int getIndex()
+	{
+		return this.index;
 	}
 
 	public Color getColor()

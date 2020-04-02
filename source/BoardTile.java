@@ -26,6 +26,11 @@ public class BoardTile extends JPanel
 
 	}
 
+	public Robot getRobot()
+	{
+		return this.robot;
+	}
+
 	public void occupy(Robot robot)
 	{
 		this.robot = robot;
