@@ -60,34 +60,34 @@ public class GameBoard
 		this.grid[13][5].occupy(greenRobot);
 		this.grid[3][11].occupy(redRobot);
 
-		this.grid[3][11].add(blueRobot.getIcon());
+		this.grid[0][0].add(blueRobot.getIcon());
 		blueRobot.getIcon().addActionListener(p -> setCurRobot(blueRobot));
-		this.grid[0][14].add(yellowRobot.getIcon());
+		this.grid[10][3].add(yellowRobot.getIcon());
 		yellowRobot.getIcon().addActionListener(p -> setCurRobot(yellowRobot));
-		this.grid[3][14].add(lightGrayRobot.getIcon());
+		this.grid[8][4].add(lightGrayRobot.getIcon());
 		lightGrayRobot.getIcon().addActionListener(p -> setCurRobot(lightGrayRobot));
-		this.grid[3][4].add(greenRobot.getIcon());
+		this.grid[13][5].add(greenRobot.getIcon());
 		greenRobot.getIcon().addActionListener(p-> setCurRobot(greenRobot));
-		this.grid[9][11].add(redRobot.getIcon());
+		this.grid[3][11].add(redRobot.getIcon());
 		redRobot.getIcon().addActionListener(p -> setCurRobot(redRobot));
 
-		TargetChip greenSun = new TargetChip(theme.getGreen(), "assets/default/Green_Sun_TC.png");
-		TargetChip redMoon = new TargetChip(theme.getRed(), "assets/default/Red_Moon_TC.png");
-		TargetChip yellowStar = new TargetChip(theme.getYellow(), "assets/default/Yellow_Star_TC.png");
-		TargetChip blueSun = new TargetChip(theme.getBlue(), "assets/default/Blue_Sun_TC.png");
-		TargetChip redPlanet = new TargetChip(theme.getRed(), "assets/default/Red_Planet_TC.png");
-		TargetChip greenStar = new TargetChip(theme.getGreen(), "assets/default/Green_Star_TC.png");
-		TargetChip bluePlanet = new TargetChip(theme.getBlue(), "assets/default/Blue_Planet_TC.png");
-		TargetChip yellowMoon = new TargetChip(theme.getYellow(), "assets/default/Yellow_Moon_TC.png");
-		TargetChip blueMoon = new TargetChip(theme.getBlue(), "assets/default/Blue_Moon_TC.png");
-		TargetChip greenPlanet = new TargetChip(theme.getGreen(), "assets/default/Green_Planet_TC.png");
-		TargetChip redSun = new TargetChip(theme.getRed(), "assets/default/Red_Sun_TC.png");
-		TargetChip yellowPlanet = new TargetChip(theme.getYellow(), "assets/default/Yellow_Planet_TC.png");
-		TargetChip greenMoon = new TargetChip(theme.getGreen(), "assets/default/Green_Moon_TC.png");
-		TargetChip redStar = new TargetChip(theme.getRed(), "assets/default/Red_Star_TC.png");
-		TargetChip blueStar = new TargetChip(theme.getBlue(), "assets/default/Blue_Star_TC.png");
-		TargetChip yellowSun = new TargetChip(theme.getYellow(), "assets/default/Yellow_Sun_TC.png");
-		TargetChip vortex = new TargetChip(theme.getLightGray(), "assets/default/Vortex.png");
+		TargetChip greenSun = new TargetChip(5, theme.getGreen(), "assets/default/Green_Sun_TC.png");
+		TargetChip redMoon = new TargetChip(0, theme.getRed(), "assets/default/Red_Moon_TC.png");
+		TargetChip yellowStar = new TargetChip(2, theme.getYellow(), "assets/default/Yellow_Star_TC.png");
+		TargetChip blueSun = new TargetChip(3, theme.getBlue(), "assets/default/Blue_Sun_TC.png");
+		TargetChip redPlanet = new TargetChip(1, theme.getRed(), "assets/default/Red_Planet_TC.png");
+		TargetChip greenStar = new TargetChip(5, theme.getGreen(), "assets/default/Green_Star_TC.png");
+		TargetChip bluePlanet = new TargetChip(6, theme.getBlue(), "assets/default/Blue_Planet_TC.png");
+		TargetChip yellowMoon = new TargetChip(7, theme.getYellow(), "assets/default/Yellow_Moon_TC.png");
+		TargetChip blueMoon = new TargetChip(3, theme.getBlue(), "assets/default/Blue_Moon_TC.png");
+		TargetChip greenPlanet = new TargetChip(12, theme.getGreen(), "assets/default/Green_Planet_TC.png");
+		TargetChip redSun = new TargetChip(15, theme.getRed(), "assets/default/Red_Sun_TC.png");
+		TargetChip yellowPlanet = new TargetChip(9, theme.getYellow(), "assets/default/Yellow_Planet_TC.png");
+		TargetChip greenMoon = new TargetChip(11, theme.getGreen(), "assets/default/Green_Moon_TC.png");
+		TargetChip redStar = new TargetChip(15, theme.getRed(), "assets/default/Red_Star_TC.png");
+		TargetChip blueStar = new TargetChip(14, theme.getBlue(), "assets/default/Blue_Star_TC.png");
+		TargetChip yellowSun = new TargetChip(8, theme.getYellow(), "assets/default/Yellow_Sun_TC.png");
+		TargetChip vortex = new TargetChip(16, theme.getLightGray(), "assets/default/Vortex.png");
 
 		this.chips.add(greenSun);
 		this.chips.add(redMoon);
@@ -204,22 +204,22 @@ public class GameBoard
 		redRobot.getIcon().addActionListener(p -> setCurRobot(redRobot));
 
 
-		TargetChip redMoon = new TargetChip(theme.getRed(), "assets/default/Red_Moon_TC.png");
-		TargetChip redPlanet = new TargetChip(theme.getRed(), "assets/default/Red_Planet_TC.png");
-		TargetChip yellowStar = new TargetChip(theme.getYellow(), "assets/default/Yellow_Star_TC.png");
-		TargetChip blueSun = new TargetChip(theme.getBlue(), "assets/default/Blue_Sun_TC.png");
-		TargetChip greenStar = new TargetChip(theme.getGreen(), "assets/default/Green_Star_TC.png");
-		TargetChip greenSun = new TargetChip(theme.getGreen(), "assets/default/Green_Sun_TC.png");
-		TargetChip bluePlanet = new TargetChip(theme.getBlue(), "assets/default/Blue_Planet_TC.png");
-		TargetChip yellowMoon = new TargetChip(theme.getYellow(), "assets/default/Yellow_Moon_TC.png");
-		TargetChip yellowSun = new TargetChip(theme.getYellow(), "assets/default/Yellow_Sun_TC.png");
-		TargetChip yellowPlanet = new TargetChip(theme.getYellow(), "assets/default/Yellow_Planet_TC.png");
-		TargetChip redSun = new TargetChip(theme.getRed(), "assets/default/Red_Sun_TC.png");
-		TargetChip greenMoon = new TargetChip(theme.getGreen(), "assets/default/Green_Moon_TC.png");
-		TargetChip greenPlanet = new TargetChip(theme.getGreen(), "assets/default/Green_Planet_TC.png");
-		TargetChip blueMoon = new TargetChip(theme.getBlue(), "assets/default/Blue_Moon_TC.png");
-		TargetChip blueStar = new TargetChip(theme.getBlue(), "assets/default/Blue_Star_TC.png");
-		TargetChip redStar = new TargetChip(theme.getRed(), "assets/default/Red_Star_TC.png");
+		TargetChip redMoon = new TargetChip(0, theme.getRed(), "assets/default/Red_Moon_TC.png");
+		TargetChip redPlanet = new TargetChip(1, theme.getRed(), "assets/default/Red_Planet_TC.png");
+		TargetChip yellowStar = new TargetChip(2, theme.getYellow(), "assets/default/Yellow_Star_TC.png");
+		TargetChip blueSun = new TargetChip(3, theme.getBlue(), "assets/default/Blue_Sun_TC.png");
+		TargetChip greenStar = new TargetChip(4, theme.getGreen(), "assets/default/Green_Star_TC.png");
+		TargetChip greenSun = new TargetChip(5, theme.getGreen(), "assets/default/Green_Sun_TC.png");
+		TargetChip bluePlanet = new TargetChip(6, theme.getBlue(), "assets/default/Blue_Planet_TC.png");
+		TargetChip yellowMoon = new TargetChip(7, theme.getYellow(), "assets/default/Yellow_Moon_TC.png");
+		TargetChip yellowSun = new TargetChip(8, theme.getYellow(), "assets/default/Yellow_Sun_TC.png");
+		TargetChip yellowPlanet = new TargetChip(9, theme.getYellow(), "assets/default/Yellow_Planet_TC.png");
+		TargetChip redSun = new TargetChip(10, theme.getRed(), "assets/default/Red_Sun_TC.png");
+		TargetChip greenMoon = new TargetChip(11, theme.getGreen(), "assets/default/Green_Moon_TC.png");
+		TargetChip greenPlanet = new TargetChip(12, theme.getGreen(), "assets/default/Green_Planet_TC.png");
+		TargetChip blueMoon = new TargetChip(13, theme.getBlue(), "assets/default/Blue_Moon_TC.png");
+		TargetChip blueStar = new TargetChip(14, theme.getBlue(), "assets/default/Blue_Star_TC.png");
+		TargetChip redStar = new TargetChip(15, theme.getRed(), "assets/default/Red_Star_TC.png");
 		
 		this.chips.add(greenSun);
 		this.chips.add(redMoon);
@@ -238,7 +238,7 @@ public class GameBoard
 		this.chips.add(blueStar);
 		this.chips.add(yellowSun);
 	//	this.chips.add(vortex);
-		
+			
 		this.grid[1][3].setTargetChip(redMoon);
 		this.grid[10][1].setTargetChip(redPlanet);
 		this.grid[6][4].setTargetChip(yellowStar);
@@ -310,37 +310,37 @@ public class GameBoard
 		System.out.println(chipInd);
 		switch (chipInd)
 		{
-			case 1:	 targetChip = new TargetChip(theme.getRed(), "assets/default/Red_Moon_TC.png");
+			case 1:	 targetChip = new TargetChip(0, theme.getRed(), "assets/default/Red_Moon_TC.png");
 				break;
-			case 2:	targetChip = new TargetChip(theme.getRed(), "assets/default/Red_Planet_TC.png");
+			case 2:	targetChip = new TargetChip(1, theme.getRed(), "assets/default/Red_Planet_TC.png");
 				break;
-			case 3:	targetChip = new TargetChip(theme.getYellow(), "assets/default/Yellow_Star_TC.png");
+			case 3:	targetChip = new TargetChip(2, theme.getYellow(), "assets/default/Yellow_Star_TC.png");
 				break;
-			case 4:	targetChip = new TargetChip(theme.getBlue(), "assets/default/Blue_Sun_TC.png");
+			case 4:	targetChip = new TargetChip(3, theme.getBlue(), "assets/default/Blue_Sun_TC.png");
 				break;
-			case 5:	targetChip = new TargetChip(theme.getGreen(), "assets/default/Green_Star_TC.png");
+			case 5:	targetChip = new TargetChip(4, theme.getGreen(), "assets/default/Green_Star_TC.png");
 				break;		
-			case 6:	targetChip = new TargetChip(theme.getGreen(), "assets/default/Green_Sun_TC.png");
+			case 6:	targetChip = new TargetChip(5, theme.getGreen(), "assets/default/Green_Sun_TC.png");
 				break;	
-			case 7:	targetChip = new TargetChip(theme.getBlue(), "assets/default/Blue_Planet_TC.png");
+			case 7:	targetChip = new TargetChip(6, theme.getBlue(), "assets/default/Blue_Planet_TC.png");
 				break;
-			case 8:	targetChip = new TargetChip(theme.getYellow(), "assets/default/Yellow_Moon_TC.png");
+			case 8:	targetChip = new TargetChip(7, theme.getYellow(), "assets/default/Yellow_Moon_TC.png");
 				break;
-			case 9:	targetChip = new TargetChip(theme.getYellow(), "assets/default/Yellow_Sun_TC.png");
+			case 9:	targetChip = new TargetChip(8, theme.getYellow(), "assets/default/Yellow_Sun_TC.png");
 				break;
-			case 10:	targetChip = new TargetChip(theme.getYellow(), "assets/default/Yellow_Planet_TC.png");
+			case 10:	targetChip = new TargetChip(9, theme.getYellow(), "assets/default/Yellow_Planet_TC.png");
 				break;
-			case 11:	targetChip = new TargetChip(theme.getRed(), "assets/default/Red_Sun_TC.png");
+			case 11:	targetChip = new TargetChip(10, theme.getRed(), "assets/default/Red_Sun_TC.png");
 				break;
-			case 12:	targetChip = new TargetChip(theme.getGreen(), "assets/default/Green_Moon_TC.png");
+			case 12:	targetChip = new TargetChip(11, theme.getGreen(), "assets/default/Green_Moon_TC.png");
 				break;
-			case 13:	targetChip = new TargetChip(theme.getGreen(), "assets/default/Green_Planet_TC.png");
+			case 13:	targetChip = new TargetChip(12, theme.getGreen(), "assets/default/Green_Planet_TC.png");
 				break;
-			case 14:	targetChip = new TargetChip(theme.getBlue(), "assets/default/Blue_Moon_TC.png");
+			case 14:	targetChip = new TargetChip(13, theme.getBlue(), "assets/default/Blue_Moon_TC.png");
 				break;
-			case 15:	targetChip = new TargetChip(theme.getBlue(), "assets/default/Blue_Star_TC.png");
+			case 15:	targetChip = new TargetChip(14, theme.getBlue(), "assets/default/Blue_Star_TC.png");
 				break;
-			case 16:	targetChip = new TargetChip(theme.getRed(), "assets/default/Red_Star_TC.png");
+			case 16:	targetChip = new TargetChip(15, theme.getRed(), "assets/default/Red_Star_TC.png");
 				break;
 		}	
 
@@ -369,13 +369,22 @@ public class GameBoard
 
 			for(int i = curRobot.getCoordinates()[1] - 1; i > -1; i--)
 			{	
-					if((this.curRobot.getColor() == this.targetChip.getColor()) && (grid[curRobot.getCoordinates()[0]][i].getTargetChip() == this.targetChip))
+					if((this.curRobot.getColor() == this.targetChip.getColor()) && (grid[curRobot.getCoordinates()[0]][i].getTargetChip() != null))
 					{
-						player.success();
-						return;
+						if(grid[curRobot.getCoordinates()[0]][i].getTargetChip().getIndex() == this.targetChip.getIndex())
+						{
+							player.success();
+							return;
+						}
 					}
 
-					if(((grid[curRobot.getCoordinates()[0]][i].getWall() != "SB")) && (grid[curRobot.getCoordinates()[0]][i + 1].getWall() !="NB") && (grid[curRobot.getCoordinates()[0]][i].isOccupied() == false) && (grid[curRobot.getCoordinates()[0]][i].getTargetChip() == null))
+					if(((grid[curRobot.getCoordinates()[0]][i].getWall() != "SB")) && (grid[curRobot.getCoordinates()[0]][i + 1].getWall() !="NB")
+						&& (grid[curRobot.getCoordinates()[0]][i].isOccupied() == false) && (grid[curRobot.getCoordinates()[0]][i].getTargetChip() == null)
+						&& (grid[curRobot.getCoordinates()[0]][i] != grid[7][7])
+						&& (grid[curRobot.getCoordinates()[0]][i] != grid[7][8])
+						&& (grid[curRobot.getCoordinates()[0]][i] != grid[8][8])
+						&& (grid[curRobot.getCoordinates()[0]][i] != grid[8][7])
+						&& (grid[curRobot.getCoordinates()[0]][i].getRobot() == null))
 					{
 						this.grid[curRobot.getCoordinates()[0]][i + 1].leave();
 						curRobot.setCoordinates(curRobot.getCoordinates()[0], i);
@@ -392,16 +401,26 @@ public class GameBoard
 			case "S":
 			for(int i = curRobot.getCoordinates()[1] + 1; i < 16; i++)
 			{
-					if((this.curRobot.getColor() == this.targetChip.getColor()) && (grid[curRobot.getCoordinates()[0]][i].getTargetChip() == this.targetChip))
+					if((this.curRobot.getColor() == this.targetChip.getColor()) && (grid[curRobot.getCoordinates()[0]][i].getTargetChip() != null))
 					{
-						player.success();
-						return;
+						if(grid[curRobot.getCoordinates()[0]][i].getTargetChip().getIndex() == this.targetChip.getIndex())
+						{
+							player.success();
+							return;
+						}
 					}
 					System.out.println("this grid square has wall:" + (grid[curRobot.getCoordinates()[0]][i].getWall()));
-					if((grid[curRobot.getCoordinates()[0]][i - 1].getWall() != "SB") && (grid[curRobot.getCoordinates()[0]][i].getWall() !="NB") && (grid[curRobot.getCoordinates()[0]][i].isOccupied() == false) && (grid[curRobot.getCoordinates()[0]][i].getTargetChip() == null))
+					if((grid[curRobot.getCoordinates()[0]][i - 1].getWall() != "SB") && (grid[curRobot.getCoordinates()[0]][i].getWall() !="NB")
+						&& (grid[curRobot.getCoordinates()[0]][i].isOccupied() == false) && (grid[curRobot.getCoordinates()[0]][i].getTargetChip() == null)
+						&& (grid[curRobot.getCoordinates()[0]][i] != grid[7][7])
+						&& (grid[curRobot.getCoordinates()[0]][i] != grid[7][8])
+						&& (grid[curRobot.getCoordinates()[0]][i] != grid[8][8])
+						&& (grid[curRobot.getCoordinates()[0]][i] != grid[8][7])
+						&& (grid[curRobot.getCoordinates()[0]][i].getRobot() == null))
 					{
 						this.grid[curRobot.getCoordinates()[0]][i - 1].leave();
 						curRobot.setCoordinates(curRobot.getCoordinates()[0], i);
+						System.out.println("robot x = " + curRobot.getCoordinates()[0] + "\nrobot y = " + curRobot.getCoordinates()[1]);
 						this.grid[curRobot.getCoordinates()[0]][i].add(curRobot.getIcon());
 						this.grid[curRobot.getCoordinates()[0]][i].occupy(curRobot);
 					}
@@ -415,8 +434,22 @@ public class GameBoard
 			case "E":
 			for(int i = curRobot.getCoordinates()[0] + 1; i < 16; i++)
 			{
+					if((this.curRobot.getColor() == this.targetChip.getColor()) && (grid[i][curRobot.getCoordinates()[1]].getTargetChip() != null))
+					{
+						if(grid[i][curRobot.getCoordinates()[1]].getTargetChip().getIndex() == this.targetChip.getIndex())
+						{
+							player.success();
+							return;
+						}
+					}
 				
-					if((grid[i - 1][curRobot.getCoordinates()[1]].getWall() != "EB") && ((i != 16) && (grid[i][curRobot.getCoordinates()[1]].getWall() !="WB")) && (grid[i][curRobot.getCoordinates()[1]].isOccupied() == false) && (grid[i][curRobot.getCoordinates()[1]].getTargetChip() == null))
+					if((grid[i - 1][curRobot.getCoordinates()[1]].getWall() != "EB") && (grid[i][curRobot.getCoordinates()[1]].getWall() !="WB")
+						&& (grid[i][curRobot.getCoordinates()[1]].isOccupied() == false) && (grid[i][curRobot.getCoordinates()[1]].getTargetChip() == null)
+						&& (grid[i][curRobot.getCoordinates()[1]] != grid[7][7])
+						&& (grid[i][curRobot.getCoordinates()[1]] != grid[7][8])
+						&& (grid[i][curRobot.getCoordinates()[1]] != grid[8][8])
+						&& (grid[i][curRobot.getCoordinates()[1]] != grid[8][7])
+						&& (grid[i][curRobot.getCoordinates()[1]].getRobot() == null))
 					{
 						this.grid[i - 1][curRobot.getCoordinates()[1]].leave();
 						curRobot.setCoordinates(i, curRobot.getCoordinates()[1]);
@@ -434,8 +467,22 @@ public class GameBoard
 			case "W":
 			for(int i = curRobot.getCoordinates()[0] - 1; i > -1; i--)
 			{
+				if((this.curRobot.getColor() == this.targetChip.getColor()) && (grid[i][curRobot.getCoordinates()[1]].getTargetChip() != null))
+					{
+						if(grid[i][curRobot.getCoordinates()[1]].getTargetChip().getIndex() == this.targetChip.getIndex())
+						{
+							player.success();
+							return;
+						}
+					}
 
-				if(((grid[i][curRobot.getCoordinates()[1]].getWall() != "EB")) && (grid[i + 1][curRobot.getCoordinates()[1]].getWall() !="WB") && (grid[i][curRobot.getCoordinates()[1]].isOccupied() == false) && (grid[i][curRobot.getCoordinates()[1]].getTargetChip() == null))
+				if(((grid[i][curRobot.getCoordinates()[1]].getWall() != "EB")) && (grid[i + 1][curRobot.getCoordinates()[1]].getWall() !="WB")
+					&& (grid[i][curRobot.getCoordinates()[1]].isOccupied() == false) && (grid[i][curRobot.getCoordinates()[1]].getTargetChip() == null)
+					&& (grid[i][curRobot.getCoordinates()[1]] != grid[7][7])
+					&& (grid[i][curRobot.getCoordinates()[1]] != grid[7][8])
+					&& (grid[i][curRobot.getCoordinates()[1]] != grid[8][8])
+					&& (grid[i][curRobot.getCoordinates()[1]] != grid[8][7])
+					&& (grid[i][curRobot.getCoordinates()[1]].getRobot() == null))
 				{
 					this.grid[i + 1][curRobot.getCoordinates()[1]].leave();
 					curRobot.setCoordinates(i, curRobot.getCoordinates()[1]);
