@@ -308,11 +308,8 @@ public class Controller
 					
 					while(player.isSuccessful() == false)
 					{
-						Thread.sleep(250);
-
+						Thread.sleep(5);
 					}
-
-
 				}
 				return true;
 			}
