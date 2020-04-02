@@ -15,6 +15,7 @@ public class Controller
 	private GameMenu menu;
 	private ArrayList<Player> curPlayerOrder;
 	private JLabel welcomeLabel, playerLabel;
+	private JPanel bidSection;
 
 	Controller()
 	{
@@ -157,8 +158,8 @@ public class Controller
 		JPanel names = new JPanel(new GridLayout(5, 2));
 		middlePanel.add(names, BorderLayout.CENTER);
 		JPanel boardBase = new JPanel();
-		names.add(new JLabel("Player Names  "));
-		names.add(new JLabel("  Target Chips"));
+		names.add(new JLabel("        "));
+		names.add(new JLabel("Chips"));
 
 		for(int i = 0; i < 4; i++)
 		{
@@ -166,7 +167,7 @@ public class Controller
 			names.add(new JLabel(String.valueOf((this.gameSettings.getPlayers())[i].getTargetChips())));
 		}
 		
-		JPanel bidSection = new JPanel(new GridLayout(5, 1));
+		this.bidSection = new JPanel(new GridLayout(5, 1));
 		bidSection.add(new JPanel());
 		
 		for(int i = 0; i < 4; i++)
@@ -234,13 +235,15 @@ public class Controller
 	{
 		panel.removeAll();
 		
-		panel.setLayout(new GridLayout(5, 1));
+		panel.setLayout(new GridLayout(5, 2));
+		JLabel moveLabel = new JLabel("Move Count	");
 		JLabel bidLabel = new JLabel("Bid");
 		JPanel bidPanel = new JPanel();
-		bidPanel.add(bidLabel);
+		panel.add(moveLabel);
 		panel.add(bidLabel);
 		for(int i = 0; i < 4; i++)
 		{
+			panel.add(new JLabel("" + this.curPlayerOrder.get(i).getMoveCount()));
 			panel.add(new JLabel("" + this.curPlayerOrder.get(i).getBid()));
 		}
 	}
@@ -271,6 +274,7 @@ public class Controller
 		eastButton.addActionListener(p ->
 		{
 			gameSettings.getGameBoard().makeMove(player, "E");
+			setBids(this.bidSection);
 			gameWindow.getFrame().revalidate();
 			gameWindow.getFrame().repaint();
 		});
@@ -278,6 +282,7 @@ public class Controller
 		westButton.addActionListener(p ->
 		{		
 			gameSettings.getGameBoard().makeMove(player, "W");
+			setBids(this.bidSection);
 			gameWindow.getFrame().revalidate();
 			gameWindow.getFrame().repaint();
 		});
@@ -285,6 +290,7 @@ public class Controller
 		southButton.addActionListener(p ->
 		{
 			gameSettings.getGameBoard().makeMove(player, "S");
+			setBids(this.bidSection);
 			gameWindow.getFrame().revalidate();
 			gameWindow.getFrame().repaint();
 			
@@ -293,6 +299,7 @@ public class Controller
 		northButton.addActionListener(p ->
 		{
 			gameSettings.getGameBoard().makeMove(player, "N");
+			setBids(this.bidSection);
 			gameWindow.getFrame().revalidate();
 			gameWindow.getFrame().repaint();
 		});
@@ -303,13 +310,24 @@ public class Controller
 			{
 				for(int i = 0; i < 4; i++)
 				{	
-					publish(i);
+					System.out.println("i = " + i);
 					Player player = curPlayerOrder.get(i);
-					
+					publish(i);
 					while(player.isSuccessful() == false)
 					{
 						Thread.sleep(5);
 					}
+					System.out.println("Success!");
+					if(gameSettings.getGameBoard().isComplex() == true)
+					{
+						gameSettings.getGameBoard().setComplex(gameSettings.getTheme());
+					}
+					else
+					{
+						gameSettings.getGameBoard().setSimple(gameSettings.getTheme());
+					}
+					gameWindow.getFrame().revalidate();
+					gameWindow.getFrame().repaint();		
 				}
 				return true;
 			}
@@ -321,7 +339,7 @@ public class Controller
 				{
 					arrowPanel.remove(layout.getLayoutComponent(BorderLayout.NORTH));
 				}
-				arrowPanel.add(new JLabel("Turn:" + player.getName()), layout.NORTH);
+				arrowPanel.add(new JLabel("Turn:" + curPlayerOrder.get(value).getName()), layout.NORTH);
 				gameWindow.getFrame().revalidate();
 				gameWindow.getFrame().repaint();	
 			}
