@@ -86,23 +86,26 @@ public class GameBoard
 		TargetChip yellowSun = new TargetChip(8, theme.getYellow(), "assets/default/Yellow_Sun_TC.png");
 		TargetChip vortex = new TargetChip(16, theme.getLightGray(), "assets/default/Vortex.png");
 
-		this.chips.add(greenSun);
-		this.chips.add(redMoon);
-		this.chips.add(yellowStar);
-		this.chips.add(blueSun);
-		this.chips.add(redPlanet);
-		this.chips.add(greenStar);
-		this.chips.add(bluePlanet);
-		this.chips.add(yellowMoon);
-		this.chips.add(blueMoon);
-		this.chips.add(greenPlanet);
-		this.chips.add(redSun);
-		this.chips.add(yellowPlanet);
-		this.chips.add(greenMoon);
-		this.chips.add(redStar);
-		this.chips.add(blueStar);
-		this.chips.add(yellowSun);
-		this.chips.add(vortex);
+	//	this.chips.add(greenSun);
+	//	this.chips.add(redMoon);
+	//	this.chips.add(yellowStar);
+	//	this.chips.add(blueSun);
+	//	this.chips.add(redPlanet);
+	//	this.chips.add(greenStar);
+	//	this.chips.add(bluePlanet);
+	//	this.chips.add(yellowMoon);
+	//	this.chips.add(blueMoon);
+	//	this.chips.add(greenPlanet);
+	//	this.chips.add(redSun);
+	//	this.chips.add(yellowPlanet);
+	//	this.chips.add(greenMoon);
+	//	this.chips.add(redStar);
+	//	this.chips.add(blueStar);
+	//	this.chips.add(yellowSun);
+	//	this.chips.add(vortex);
+
+		this.chips = new ArrayList<>(Arrays.asList(greenSun, redMoon, yellowStar, blueSun, redPlanet, greenStar,
+		 bluePlanet, greenPlanet, redSun, yellowPlanet, greenMoon, redStar, blueStar, yellowSun, vortex));
 		
 
 		this.grid[1][2].setTargetChip(greenSun);
@@ -366,11 +369,12 @@ public class GameBoard
 
 			for(int i = curRobot.getCoordinates()[1] - 1; i > -1; i--)
 			{	
-					if((this.curRobot.getColor() == this.targetChip.getColor()) && (grid[curRobot.getCoordinates()[0]][i].getTargetChip() != null))
+					if((this.curRobot.getColor() == this.targetChip.getColor()) && (grid[curRobot.getCoordinates()[0]][i].getTargetChip() != null) && (grid[curRobot.getCoordinates()[0]][i] .getWall() != "SB"))
 					{
 						System.out.println("cur target index: " + grid[curRobot.getCoordinates()[0]][i].getTargetChip().getIndex() +"\ntarget chip Index: " + this.targetChip.getIndex());
 						if(grid[curRobot.getCoordinates()[0]][i].getTargetChip().getIndex() == this.targetChip.getIndex())
 						{
+							curRobot = null;
 							player.success();
 							for(int k = 0; k < 16; k++)
 							{
@@ -380,6 +384,7 @@ public class GameBoard
 
 								}
 							}
+							grid[7][7].setTargetChip(this.targetChip);
 							return;
 						}
 					}
@@ -407,12 +412,22 @@ public class GameBoard
 			case "S":
 			for(int i = curRobot.getCoordinates()[1] + 1; i < 16; i++)
 			{
-					if((this.curRobot.getColor() == this.targetChip.getColor()) && (grid[curRobot.getCoordinates()[0]][i].getTargetChip() != null))
+					if((this.curRobot.getColor() == this.targetChip.getColor()) && (grid[curRobot.getCoordinates()[0]][i].getTargetChip() != null) && (grid[curRobot.getCoordinates()[0]][i] .getWall() != "NB"))
 					{
 						System.out.println("cur target index: " + grid[curRobot.getCoordinates()[0]][i].getTargetChip().getIndex() +"\ntarget chip Index: " + this.targetChip.getIndex());
 						if(grid[curRobot.getCoordinates()[0]][i].getTargetChip().getIndex() == this.targetChip.getIndex())
 						{
+							curRobot = null;
 							player.success();
+							for(int k = 0; k < 16; k++)
+							{
+								for(int j = 0; j < 16; j++)
+								{
+									grid[j][k].removeAll();
+
+								}
+							}
+							grid[7][7].setTargetChip(this.targetChip);
 							return;
 						}
 					}
@@ -433,18 +448,27 @@ public class GameBoard
 					{
 						break;
 					}
-				
 			}
 			break;	
 			case "E":
 			for(int i = curRobot.getCoordinates()[0] + 1; i < 16; i++)
 			{
-					if((this.curRobot.getColor() == this.targetChip.getColor()) && (grid[i][curRobot.getCoordinates()[1]].getTargetChip() != null))
+					if((this.curRobot.getColor() == this.targetChip.getColor()) && (grid[i][curRobot.getCoordinates()[1]].getTargetChip() != null) && (grid[i][curRobot.getCoordinates()[1]] .getWall() != "WB"))
 					{
 						System.out.println("cur target index: " + grid[i][curRobot.getCoordinates()[1]].getTargetChip().getIndex() +"\ntarget chip Index: " + this.targetChip.getIndex());
 						if(grid[i][curRobot.getCoordinates()[1]].getTargetChip().getIndex() == this.targetChip.getIndex())
 						{
+							curRobot = null;
 							player.success();
+							for(int k = 0; k < 16; k++)
+							{
+								for(int j = 0; j < 16; j++)
+								{
+									grid[j][k].removeAll();
+
+								}
+							}
+							grid[7][7].setTargetChip(this.targetChip);
 							return;
 						}
 					}
@@ -473,12 +497,21 @@ public class GameBoard
 			case "W":
 			for(int i = curRobot.getCoordinates()[0] - 1; i > -1; i--)
 			{
-				if((this.curRobot.getColor() == this.targetChip.getColor()) && (grid[i][curRobot.getCoordinates()[1]].getTargetChip() != null))
+				if((this.curRobot.getColor() == this.targetChip.getColor()) && (grid[i][curRobot.getCoordinates()[1]].getTargetChip() != null) && (grid[i][curRobot.getCoordinates()[1]].getWall() != "EB"))
 					{
-						System.out.println("cur target index: " + grid[i][curRobot.getCoordinates()[1]].getTargetChip().getIndex() +"\ntarget chip Index: " + this.targetChip.getIndex());
 						if(grid[i][curRobot.getCoordinates()[1]].getTargetChip().getIndex() == this.targetChip.getIndex())
 						{
+							curRobot = null;
 							player.success();
+							for(int k = 0; k < 16; k++)
+							{
+								for(int j = 0; j < 16; j++)
+								{
+									grid[j][k].removeAll();
+
+								}
+							}
+							grid[7][7].setTargetChip(this.targetChip);
 							return;
 						}
 					}
