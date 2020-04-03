@@ -16,6 +16,7 @@ public class Controller
 	private ArrayList<Player> curPlayerOrder;
 	private JLabel welcomeLabel, playerLabel;
 	private JPanel bidSection;
+	private Player player;
 
 	Controller()
 	{
@@ -144,6 +145,25 @@ public class Controller
 			{
 				createGame();
 			}
+			Player winner = gameSettings.getPlayers()[0];
+			for(int i = 0; i < 4; i++)
+			{
+				if( gameSettings.getPlayers()[i].getTargetChips() == 10)
+				{
+					winner = gameSettings.getPlayers()[i];
+				}
+			}
+			JLabel winnerLabel = new JLabel("Congratulations " + winner.getName());
+			JButton newGame = new JButton("Play Again");
+			newGame.addActionListener(q -> 
+			{
+				Controller c = new Controller();
+				gameWindow.getFrame().dispose();
+
+			});
+			gameWindow.getContentPane().removeAll();
+			gameWindow.getContentPane().add(winnerLabel, BorderLayout.NORTH);
+			gameWindow.getContentPane().add(newGame, BorderLayout.CENTER);
 		});
 		difficultyPanel.add(label, BorderLayout.NORTH);
 		difficultyPanel.add(novice, BorderLayout.WEST);
@@ -271,7 +291,7 @@ public class Controller
 
 		
 
-		Player player = curPlayerOrder.get(0);
+		player = curPlayerOrder.get(0);
 
 		this.gameWindow.getFrame().revalidate();
 		this.gameWindow.getFrame().repaint();
@@ -316,7 +336,7 @@ public class Controller
 				for(int i = 0; i < 4; i++)
 				{	
 					System.out.println("i = " + i);
-					Player player = curPlayerOrder.get(i);
+					player = curPlayerOrder.get(i);
 					publish(i);
 					while(player.isSuccessful() == false)
 					{
