@@ -19,7 +19,7 @@ public class Window
 	private void size()
 	{
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		this.frameSize = new Dimension((int) (screenSize.width * 6/8), (int) screenSize.height);
+		this.frameSize = new Dimension((int) (screenSize.width * 7/8), (int) screenSize.height * 15/16);
 		this.frame.setPreferredSize(frameSize);
 	}
 
