@@ -73,36 +73,18 @@ public class GameBoard
 		TargetChip yellowStar = new TargetChip(2, theme.getYellow(), "assets/default/Yellow_Star_TC.png");
 		TargetChip blueSun = new TargetChip(3, theme.getBlue(), "assets/default/Blue_Sun_TC.png");
 		TargetChip redPlanet = new TargetChip(1, theme.getRed(), "assets/default/Red_Planet_TC.png");
-		TargetChip greenStar = new TargetChip(5, theme.getGreen(), "assets/default/Green_Star_TC.png");
+		TargetChip greenStar = new TargetChip(4, theme.getGreen(), "assets/default/Green_Star_TC.png");
 		TargetChip bluePlanet = new TargetChip(6, theme.getBlue(), "assets/default/Blue_Planet_TC.png");
 		TargetChip yellowMoon = new TargetChip(7, theme.getYellow(), "assets/default/Yellow_Moon_TC.png");
-		TargetChip blueMoon = new TargetChip(3, theme.getBlue(), "assets/default/Blue_Moon_TC.png");
+		TargetChip blueMoon = new TargetChip(13, theme.getBlue(), "assets/default/Blue_Moon_TC.png");
 		TargetChip greenPlanet = new TargetChip(12, theme.getGreen(), "assets/default/Green_Planet_TC.png");
-		TargetChip redSun = new TargetChip(15, theme.getRed(), "assets/default/Red_Sun_TC.png");
+		TargetChip redSun = new TargetChip(10, theme.getRed(), "assets/default/Red_Sun_TC.png");
 		TargetChip yellowPlanet = new TargetChip(9, theme.getYellow(), "assets/default/Yellow_Planet_TC.png");
 		TargetChip greenMoon = new TargetChip(11, theme.getGreen(), "assets/default/Green_Moon_TC.png");
 		TargetChip redStar = new TargetChip(15, theme.getRed(), "assets/default/Red_Star_TC.png");
 		TargetChip blueStar = new TargetChip(14, theme.getBlue(), "assets/default/Blue_Star_TC.png");
 		TargetChip yellowSun = new TargetChip(8, theme.getYellow(), "assets/default/Yellow_Sun_TC.png");
 		TargetChip vortex = new TargetChip(16, theme.getLightGray(), "assets/default/Vortex.png");
-
-	//	this.chips.add(greenSun);
-	//	this.chips.add(redMoon);
-	//	this.chips.add(yellowStar);
-	//	this.chips.add(blueSun);
-	//	this.chips.add(redPlanet);
-	//	this.chips.add(greenStar);
-	//	this.chips.add(bluePlanet);
-	//	this.chips.add(yellowMoon);
-	//	this.chips.add(blueMoon);
-	//	this.chips.add(greenPlanet);
-	//	this.chips.add(redSun);
-	//	this.chips.add(yellowPlanet);
-	//	this.chips.add(greenMoon);
-	//	this.chips.add(redStar);
-	//	this.chips.add(blueStar);
-	//	this.chips.add(yellowSun);
-	//	this.chips.add(vortex);
 
 		this.chips = new ArrayList<>(Arrays.asList(greenSun, redMoon, yellowStar, blueSun, redPlanet, greenStar,
 		 bluePlanet, greenPlanet, redSun, yellowPlanet, greenMoon, redStar, blueStar, yellowSun, vortex));
@@ -204,23 +186,24 @@ public class GameBoard
 		redRobot.getIcon().addActionListener(p -> setCurRobot(redRobot));
 
 
+		TargetChip greenSun = new TargetChip(5, theme.getGreen(), "assets/default/Green_Sun_TC.png");
 		TargetChip redMoon = new TargetChip(0, theme.getRed(), "assets/default/Red_Moon_TC.png");
-		TargetChip redPlanet = new TargetChip(1, theme.getRed(), "assets/default/Red_Planet_TC.png");
 		TargetChip yellowStar = new TargetChip(2, theme.getYellow(), "assets/default/Yellow_Star_TC.png");
 		TargetChip blueSun = new TargetChip(3, theme.getBlue(), "assets/default/Blue_Sun_TC.png");
+		TargetChip redPlanet = new TargetChip(1, theme.getRed(), "assets/default/Red_Planet_TC.png");
 		TargetChip greenStar = new TargetChip(4, theme.getGreen(), "assets/default/Green_Star_TC.png");
-		TargetChip greenSun = new TargetChip(5, theme.getGreen(), "assets/default/Green_Sun_TC.png");
 		TargetChip bluePlanet = new TargetChip(6, theme.getBlue(), "assets/default/Blue_Planet_TC.png");
 		TargetChip yellowMoon = new TargetChip(7, theme.getYellow(), "assets/default/Yellow_Moon_TC.png");
-		TargetChip yellowSun = new TargetChip(8, theme.getYellow(), "assets/default/Yellow_Sun_TC.png");
-		TargetChip yellowPlanet = new TargetChip(9, theme.getYellow(), "assets/default/Yellow_Planet_TC.png");
-		TargetChip redSun = new TargetChip(10, theme.getRed(), "assets/default/Red_Sun_TC.png");
-		TargetChip greenMoon = new TargetChip(11, theme.getGreen(), "assets/default/Green_Moon_TC.png");
-		TargetChip greenPlanet = new TargetChip(12, theme.getGreen(), "assets/default/Green_Planet_TC.png");
 		TargetChip blueMoon = new TargetChip(13, theme.getBlue(), "assets/default/Blue_Moon_TC.png");
-		TargetChip blueStar = new TargetChip(14, theme.getBlue(), "assets/default/Blue_Star_TC.png");
+		TargetChip greenPlanet = new TargetChip(12, theme.getGreen(), "assets/default/Green_Planet_TC.png");
+		TargetChip redSun = new TargetChip(10, theme.getRed(), "assets/default/Red_Sun_TC.png");
+		TargetChip yellowPlanet = new TargetChip(9, theme.getYellow(), "assets/default/Yellow_Planet_TC.png");
+		TargetChip greenMoon = new TargetChip(11, theme.getGreen(), "assets/default/Green_Moon_TC.png");
 		TargetChip redStar = new TargetChip(15, theme.getRed(), "assets/default/Red_Star_TC.png");
-		
+		TargetChip blueStar = new TargetChip(14, theme.getBlue(), "assets/default/Blue_Star_TC.png");
+		TargetChip yellowSun = new TargetChip(8, theme.getYellow(), "assets/default/Yellow_Sun_TC.png");
+		TargetChip vortex = new TargetChip(16, theme.getLightGray(), "assets/default/Vortex.png");
+
 		this.chips.add(greenSun);
 		this.chips.add(redMoon);
 		this.chips.add(yellowStar);
@@ -381,6 +364,8 @@ public class GameBoard
 								for(int j = 0; j < 16; j++)
 								{
 									grid[j][k].removeAll();
+									grid[j][k].removeTargetChip();
+									grid[j][k].leave();
 
 								}
 							}
@@ -424,7 +409,8 @@ public class GameBoard
 								for(int j = 0; j < 16; j++)
 								{
 									grid[j][k].removeAll();
-
+									grid[j][k].removeTargetChip();
+									grid[j][k].leave();
 								}
 							}
 							grid[7][7].setTargetChip(this.targetChip);
@@ -465,7 +451,8 @@ public class GameBoard
 								for(int j = 0; j < 16; j++)
 								{
 									grid[j][k].removeAll();
-
+									grid[j][k].removeTargetChip();
+									grid[j][k].leave();
 								}
 							}
 							grid[7][7].setTargetChip(this.targetChip);
@@ -508,7 +495,8 @@ public class GameBoard
 								for(int j = 0; j < 16; j++)
 								{
 									grid[j][k].removeAll();
-
+									grid[j][k].removeTargetChip();
+									grid[j][k].leave();
 								}
 							}
 							grid[7][7].setTargetChip(this.targetChip);
