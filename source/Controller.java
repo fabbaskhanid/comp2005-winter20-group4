@@ -139,7 +139,11 @@ public class Controller
 					this.gameSettings.getPlayers()[i] = new SmartAI("CPU" + i);
 				}
 			}
-			createGame();
+			while((this.gameSettings.getPlayers()[0].getTargetChips() < 10) && (this.gameSettings.getPlayers()[1].getTargetChips() < 10)
+				&& (this.gameSettings.getPlayers()[2].getTargetChips() < 10) && (this.gameSettings.getPlayers()[3].getTargetChips() < 10))
+			{
+				createGame();
+			}
 		});
 		difficultyPanel.add(label, BorderLayout.NORTH);
 		difficultyPanel.add(novice, BorderLayout.WEST);
@@ -181,7 +185,8 @@ public class Controller
 		
 					protected BidSetter doInBackground() throws Exception
 					{
-						BidSetter bids = new BidSetter(gameWindow.getFrame(), gameSettings.getPlayers()[0], gameSettings.getPlayers()[1], gameSettings.getPlayers()[2], gameSettings.getPlayers()[3]);                	 
+						BidSetter bids = new BidSetter(gameWindow.getFrame(), gameSettings.getPlayers()[0], gameSettings.getPlayers()[1],
+								gameSettings.getPlayers()[2], gameSettings.getPlayers()[3]);                	 
 						Thread.sleep(16000);
 						return bids;
 					}
@@ -236,15 +241,15 @@ public class Controller
 		panel.removeAll();
 		
 		panel.setLayout(new GridLayout(5, 2));
-		JLabel moveLabel = new JLabel("Move Count	");
-		JLabel bidLabel = new JLabel("Bid");
+		JLabel moveLabel = new JLabel("Move Count  ");
+		JLabel bidLabel = new JLabel("  Bid");
 		JPanel bidPanel = new JPanel();
 		panel.add(moveLabel);
 		panel.add(bidLabel);
 		for(int i = 0; i < 4; i++)
 		{
-			panel.add(new JLabel("" + this.curPlayerOrder.get(i).getMoveCount()));
-			panel.add(new JLabel("" + this.curPlayerOrder.get(i).getBid()));
+			panel.add(new JLabel("" + this.gameSettings.getPlayers()[i].getMoveCount()));
+			panel.add(new JLabel("" + this.gameSettings.getPlayers()[i].getBid()));
 		}
 	}
 
@@ -334,10 +339,23 @@ public class Controller
 
 			protected void process(List<Integer> chunks)
 			{
+
+
 				int value = chunks.get(chunks.size() - 1);
+				
+				if(value > 0)
+				{
+					int lastVal = value - 1;
+					if(curPlayerOrder.get(lastVal).getMoveCount() <= curPlayerOrder.get(lastVal).getBid())
+					{
+						curPlayerOrder.get(lastVal).addTargetChip();
+					}
+				}
+
 				if(value != 0)
 				{
 					arrowPanel.remove(layout.getLayoutComponent(BorderLayout.NORTH));
+
 				}
 				arrowPanel.add(new JLabel("Turn:" + curPlayerOrder.get(value).getName()), layout.NORTH);
 				gameWindow.getFrame().revalidate();

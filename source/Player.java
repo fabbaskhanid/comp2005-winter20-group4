@@ -70,4 +70,11 @@ public class Player
 	{
 		return this.moveCount;
 	}
+
+	public void reset()
+	{
+		this.success = false;
+		this.moveCount = 0;
+		this.curBid = 0;
+	}
 }

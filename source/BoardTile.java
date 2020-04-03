@@ -12,6 +12,7 @@ public class BoardTile extends JPanel
 	private Robot robot;
 	private boolean normalWall;
 	private boolean border;
+	private boolean angledWall;
 	
 
 	BoardTile(int row, int col)
@@ -90,87 +91,74 @@ public class BoardTile extends JPanel
 
 		if (wall == "NB") //north border
 		{
-			setWallNorth();
+			this.setBorder(BorderFactory.createMatteBorder(8, 1, 1, 1, Color.BLACK));
+			border = true;
 		}
 		else if (wall == "EB") //east border
 		{
-			setWallEast();
+			this.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 8, Color.BLACK));
+			border = true;
 		}
 		else if (wall == "SB") //south border
 		{
-			setWallSouth();
+			this.setBorder(BorderFactory.createMatteBorder(1, 1, 8, 1, Color.BLACK));
+			border = true;
 		}
 		else if (wall == "WB") //east border
 		{
-			setWallWest();
+			this.setBorder(BorderFactory.createMatteBorder(1, 8, 1, 1, Color.BLACK));
+			border = true;
 		}
 		else if (wall == "NE") //north east wall
 		{
-			setWallNorthEast();
+			this.setBorder(BorderFactory.createMatteBorder(8, 1, 1, 8, Color.BLACK));
+			normalWall = true;
 		}
 		else if (wall == "NW") //north west wall
 		{
-			setWallNorthWest();
+			this.setBorder(BorderFactory.createMatteBorder(8, 8, 1, 1, Color.BLACK));
+			normalWall = true;
 		}
 		else if (wall == "SE") //south east wall
 		{
-			setWallSouthEast();
+			this.setBorder(BorderFactory.createMatteBorder(1, 1, 8, 8, Color.BLACK));
+			normalWall = true;
 		}
 		else if (wall == "SW") //south west wall
 		{
-			setWallSouthWest();
+			this.setBorder(BorderFactory.createMatteBorder(1, 8, 8, 1, Color.BLACK));
+			normalWall = true;
 		}
 		else {
 			return;
 		}
 	}
-	
-	public void setWallNorth()
+
+	public String setAngledWall(String wallColor)
 	{
-		this.setBorder(BorderFactory.createMatteBorder(8, 0, 0, 0, Color.BLACK));
-		border = true;
-	}
-	
-	public void setWallEast()
-	{
-		this.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 8, Color.BLACK));
-		border = true;
-	}
-	
-	public void setWallSouth()
-	{
-		this.setBorder(BorderFactory.createMatteBorder(1, 1, 8, 1, Color.BLACK));
-		border = true;
-	}
-	
-	public void setWallWest()
-	{
-		this.setBorder(BorderFactory.createMatteBorder(1, 8, 1, 1, Color.BLACK));
-		border = true;
-	}
-	
-	public void setWallNorthEast()
-	{
-		this.setBorder(BorderFactory.createMatteBorder(8, 1, 1, 8, Color.BLACK));
-		normalWall = true;
-	}
-	
-	public void setWallNorthWest()
-	{
-		this.setBorder(BorderFactory.createMatteBorder(8, 8, 1, 1, Color.BLACK));
-		normalWall = true;
-	}
-	
-	public void setWallSouthEast()
-	{
-		this.setBorder(BorderFactory.createMatteBorder(1, 1, 8, 8, Color.BLACK));
-		normalWall = true;
-	}
-	
-	public void setWallSouthWest()
-	{
-		this.setBorder(BorderFactory.createMatteBorder(1, 8, 8, 1, Color.BLACK));
-		normalWall = true;
+		if (wallColor == "red") 
+		{
+			angledWall = true;
+			return "assets/default/Red_Angled_Wall.png";
+		}
+		else if (wallColor == "blue") 
+		{
+			angledWall = true;
+			return "assets/default/Blue_Angled_Wall.png";
+		}
+		else if (wallColor == "green") 
+		{
+			angledWall = true;
+			return "assets/default/Green_Angled_Wall.png";
+		}
+		else if (wallColor == "yellow") 
+		{
+			angledWall = true;
+			return "assets/default/Yellow_Angled_Wall.png";
+		}
+		else {
+			return "invalid";
+		}
 	}
 	
 	public String returnWall()
@@ -182,6 +170,10 @@ public class BoardTile extends JPanel
 		else if (border == true)
 		{
 			return "Border";
+		}
+		else if (angledWall == true)
+		{
+			return "Angled Wall";
 		}
 		else {
 			return "None";
