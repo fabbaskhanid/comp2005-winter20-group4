@@ -17,9 +17,12 @@ public class Controller
 	private JLabel welcomeLabel, playerLabel;
 	private JPanel bidSection;
 	private Player player;
+	private int targetChips;
+	private JPanel names;
 
 	Controller()
 	{
+		this.targetChips = 10;
 		this.gameWindow = new Window();
 		this.gameSettings = new Settings();
 		this.menu = new GameMenu(this.gameSettings, this.gameWindow);
@@ -128,7 +131,52 @@ public class Controller
 				}
 			}
 			createGame();
+	/*		SwingWorker<Boolean, Integer> noviceWorker = new SwingWorker<>()
+			{
+				protected Boolean doInBackground() throws Exception
+				{
+				//	while((gameSettings.getPlayers()[0].getTargetChips() < 10) && (gameSettings.getPlayers()[1].getTargetChips() < 10)
+				//	&& (gameSettings.getPlayers()[2].getTargetChips() < 10) && (gameSettings.getPlayers()[3].getTargetChips() < 10))
+					{
+						createGame();
+						publish(1);
+					}
+					return true;
+				}
+
+				protected void process(List<Integer> chunks)
+				{
+					int value = chunks.get(chunks.size() - 1);
+					updateChips();
+				}
+				
+				protected void done()
+				{
+					Player winner = gameSettings.getPlayers()[0];
+					for(int i = 0; i < 4; i++)
+					{
+						if( gameSettings.getPlayers()[i].getTargetChips() == 10)
+						{
+							winner = gameSettings.getPlayers()[i];
+							JLabel winnerLabel = new JLabel("Congratulations " + winner.getName());
+							JButton newGame = new JButton("Play Again");
+							newGame.addActionListener(q -> 
+							{
+								Controller c = new Controller();
+								gameWindow.getFrame().dispose();	
+
+							});
+							gameWindow.getContentPane().removeAll();
+							gameWindow.getContentPane().add(winnerLabel, BorderLayout.NORTH);
+							gameWindow.getContentPane().add(newGame, BorderLayout.CENTER);
+						}	
+					}
+				}
+			};	
+			noviceWorker.execute();
+			*/
 		});
+
 	
 		JButton pro = new JButton("Professional");
 		pro.addActionListener(p ->
@@ -140,30 +188,9 @@ public class Controller
 					this.gameSettings.getPlayers()[i] = new SmartAI("CPU" + i);
 				}
 			}
-			while((this.gameSettings.getPlayers()[0].getTargetChips() < 10) && (this.gameSettings.getPlayers()[1].getTargetChips() < 10)
-				&& (this.gameSettings.getPlayers()[2].getTargetChips() < 10) && (this.gameSettings.getPlayers()[3].getTargetChips() < 10))
-			{
-				createGame();
-			}
-			Player winner = gameSettings.getPlayers()[0];
-			for(int i = 0; i < 4; i++)
-			{
-				if( gameSettings.getPlayers()[i].getTargetChips() == 10)
-				{
-					winner = gameSettings.getPlayers()[i];
-				}
-			}
-			JLabel winnerLabel = new JLabel("Congratulations " + winner.getName());
-			JButton newGame = new JButton("Play Again");
-			newGame.addActionListener(q -> 
-			{
-				Controller c = new Controller();
-				gameWindow.getFrame().dispose();
-
-			});
-			gameWindow.getContentPane().removeAll();
-			gameWindow.getContentPane().add(winnerLabel, BorderLayout.NORTH);
-			gameWindow.getContentPane().add(newGame, BorderLayout.CENTER);
+			
+			
+			
 		});
 		difficultyPanel.add(label, BorderLayout.NORTH);
 		difficultyPanel.add(novice, BorderLayout.WEST);
@@ -173,15 +200,9 @@ public class Controller
 		this.gameWindow.getFrame().repaint();
 	}
 
-	public void createGame()
+	private void updateChips()
 	{
-		this.gameWindow.getContentPane().removeAll();
-
-		JPanel gameSpace = new JPanel(new BorderLayout());
-		JPanel middlePanel = new JPanel(new BorderLayout());
-		JPanel names = new JPanel(new GridLayout(5, 2));
-		middlePanel.add(names, BorderLayout.CENTER);
-		JPanel boardBase = new JPanel();
+		names = new JPanel(new GridLayout(5, 2));
 		names.add(new JLabel("        "));
 		names.add(new JLabel("Chips"));
 
@@ -190,6 +211,19 @@ public class Controller
 			names.add(new JLabel((this.gameSettings.getPlayers())[i].getName()));
 			names.add(new JLabel(String.valueOf((this.gameSettings.getPlayers())[i].getTargetChips())));
 		}
+		this.gameWindow.getFrame().revalidate();
+		this.gameWindow.getFrame().repaint();
+	}
+
+	public void createGame()
+	{
+		this.gameWindow.getContentPane().removeAll();
+		updateChips();
+		JPanel gameSpace = new JPanel(new BorderLayout());
+		JPanel middlePanel = new JPanel(new BorderLayout());
+		middlePanel.add(names, BorderLayout.CENTER);
+		JPanel boardBase = new JPanel();
+
 		
 		this.bidSection = new JPanel(new GridLayout(5, 1));
 		bidSection.add(new JPanel());
@@ -334,15 +368,13 @@ public class Controller
 			protected Boolean doInBackground() throws Exception
 			{
 				for(int i = 0; i < 4; i++)
-				{	
-					System.out.println("i = " + i);
+				{	int curTargetChips = targetChips;
 					player = curPlayerOrder.get(i);
 					publish(i);
-					while(player.isSuccessful() == false)
+					while((player.isSuccessful() == false) && (curTargetChips == targetChips))
 					{
 						Thread.sleep(5);
 					}
-					System.out.println("Success!");
 					if(gameSettings.getGameBoard().isComplex() == true)
 					{
 						gameSettings.getGameBoard().setComplex(gameSettings.getTheme());
@@ -369,6 +401,7 @@ public class Controller
 					if(curPlayerOrder.get(lastVal).getMoveCount() <= curPlayerOrder.get(lastVal).getBid())
 					{
 						curPlayerOrder.get(lastVal).addTargetChip();
+						targetChips--;
 					}
 				}
 
@@ -384,10 +417,31 @@ public class Controller
 
 			protected void done()
 			{
+				updateChips();
 				try
 				{
 					if(get() == true)
-					{}
+					{
+						Player winner = gameSettings.getPlayers()[0];
+						for(int i = 0; i < 4; i++)
+						{
+							if( gameSettings.getPlayers()[i].getTargetChips() == 10)
+							{
+								winner = gameSettings.getPlayers()[i];
+								JLabel winnerLabel = new JLabel("Congratulations " + winner.getName());
+								JButton newGame = new JButton("Play Again");
+								newGame.addActionListener(q -> 
+								{
+									Controller c = new Controller();
+									gameWindow.getFrame().dispose();			
+
+								});
+								gameWindow.getContentPane().removeAll();
+								gameWindow.getContentPane().add(winnerLabel, BorderLayout.NORTH);
+								gameWindow.getContentPane().add(newGame, BorderLayout.CENTER);
+							}	
+						}
+					}
 				}
 				catch(InterruptedException e)
 				{}
@@ -398,8 +452,9 @@ public class Controller
 
 			
 
-		};	
-		turnWorker.execute();	
+		};
+		turnWorker.execute();
+
 	}
 
 
