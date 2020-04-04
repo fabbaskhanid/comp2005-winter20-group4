@@ -20,7 +20,7 @@ public class BidSetter
 
 	BidSetter(JFrame frame, Player a, Player b, Player c, Player d)
 	{
-		this.time = 15;
+		this.time = 60;
 		
 		this.bidPopUp = new JDialog(frame);
 		this.bidPopUp.setPreferredSize(new Dimension(600, 400));

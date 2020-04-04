@@ -198,7 +198,7 @@ public class Controller
 					{
 						BidSetter bids = new BidSetter(gameWindow.getFrame(), gameSettings.getPlayers()[0], gameSettings.getPlayers()[1],
 								gameSettings.getPlayers()[2], gameSettings.getPlayers()[3]);                	 
-						Thread.sleep(16000);
+						Thread.sleep(61000);
 						return bids;
 					}
 
