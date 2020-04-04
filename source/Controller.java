@@ -131,50 +131,7 @@ public class Controller
 				}
 			}
 			createGame();
-	/*		SwingWorker<Boolean, Integer> noviceWorker = new SwingWorker<>()
-			{
-				protected Boolean doInBackground() throws Exception
-				{
-				//	while((gameSettings.getPlayers()[0].getTargetChips() < 10) && (gameSettings.getPlayers()[1].getTargetChips() < 10)
-				//	&& (gameSettings.getPlayers()[2].getTargetChips() < 10) && (gameSettings.getPlayers()[3].getTargetChips() < 10))
-					{
-						createGame();
-						publish(1);
-					}
-					return true;
-				}
 
-				protected void process(List<Integer> chunks)
-				{
-					int value = chunks.get(chunks.size() - 1);
-					updateChips();
-				}
-				
-				protected void done()
-				{
-					Player winner = gameSettings.getPlayers()[0];
-					for(int i = 0; i < 4; i++)
-					{
-						if( gameSettings.getPlayers()[i].getTargetChips() == 10)
-						{
-							winner = gameSettings.getPlayers()[i];
-							JLabel winnerLabel = new JLabel("Congratulations " + winner.getName());
-							JButton newGame = new JButton("Play Again");
-							newGame.addActionListener(q -> 
-							{
-								Controller c = new Controller();
-								gameWindow.getFrame().dispose();	
-
-							});
-							gameWindow.getContentPane().removeAll();
-							gameWindow.getContentPane().add(winnerLabel, BorderLayout.NORTH);
-							gameWindow.getContentPane().add(newGame, BorderLayout.CENTER);
-						}	
-					}
-				}
-			};	
-			noviceWorker.execute();
-			*/
 		});
 
 	
@@ -316,6 +273,7 @@ public class Controller
 		BasicArrowButton northButton = new BasicArrowButton(BasicArrowButton.NORTH);
 		BasicArrowButton westButton = new BasicArrowButton(BasicArrowButton.WEST);
 		BasicArrowButton southButton = new BasicArrowButton(BasicArrowButton.SOUTH);
+		arrowPanel.add(new JLabel("Turn:" + curPlayerOrder.get(0).getName()), layout.NORTH);
 		arrowPanel.add(eastButton, layout.EAST);
 		arrowPanel.add(westButton, layout.WEST);
 		arrowPanel.add(southButton, layout.SOUTH);
@@ -367,13 +325,19 @@ public class Controller
 		{
 			protected Boolean doInBackground() throws Exception
 			{
+				int curTargetChips = targetChips;
 				for(int i = 0; i < 4; i++)
-				{	int curTargetChips = targetChips;
+				{	
+					
 					player = curPlayerOrder.get(i);
-					publish(i);
+					
 					while((player.isSuccessful() == false) && (curTargetChips == targetChips))
 					{
 						Thread.sleep(5);
+					}
+					if(curTargetChips != targetChips)
+					{
+						return true;
 					}
 					if(gameSettings.getGameBoard().isComplex() == true)
 					{
@@ -383,6 +347,7 @@ public class Controller
 					{
 						gameSettings.getGameBoard().setSimple(gameSettings.getTheme());
 					}
+					publish(i);
 					gameWindow.getFrame().revalidate();
 					gameWindow.getFrame().repaint();		
 				}
@@ -395,53 +360,69 @@ public class Controller
 
 				int value = chunks.get(chunks.size() - 1);
 				
-				if(value > 0)
+				
+				if((curPlayerOrder.get(value).getMoveCount() > 0) && (curPlayerOrder.get(value).getMoveCount() <= curPlayerOrder.get(value).getBid()))
 				{
-					int lastVal = value - 1;
-					if(curPlayerOrder.get(lastVal).getMoveCount() <= curPlayerOrder.get(lastVal).getBid())
-					{
-						curPlayerOrder.get(lastVal).addTargetChip();
-						targetChips--;
-					}
+					curPlayerOrder.get(value).addTargetChip();
+					targetChips--;
+					updateChips();
 				}
+				
 
-				if(value != 0)
+				else
 				{
 					arrowPanel.remove(layout.getLayoutComponent(BorderLayout.NORTH));
-
+					arrowPanel.add(new JLabel("Turn:" + curPlayerOrder.get(value + 1).getName()), layout.NORTH);
+					gameWindow.getFrame().revalidate();
+					gameWindow.getFrame().repaint();	
 				}
-				arrowPanel.add(new JLabel("Turn:" + curPlayerOrder.get(value).getName()), layout.NORTH);
-				gameWindow.getFrame().revalidate();
-				gameWindow.getFrame().repaint();	
+				
 			}
 
 			protected void done()
 			{
-				updateChips();
 				try
 				{
 					if(get() == true)
 					{
 						Player winner = gameSettings.getPlayers()[0];
+						Boolean flag = false;
 						for(int i = 0; i < 4; i++)
 						{
+
 							if( gameSettings.getPlayers()[i].getTargetChips() == 10)
 							{
 								winner = gameSettings.getPlayers()[i];
-								JLabel winnerLabel = new JLabel("Congratulations " + winner.getName());
-								JButton newGame = new JButton("Play Again");
-								newGame.addActionListener(q -> 
-								{
+								flag = true;
+							}
+						}	
+						if(flag == true)
+						{
+							JLabel winnerLabel = new JLabel("Congratulations " + winner.getName());
+							JButton newGame = new JButton("Play Again");
+							newGame.addActionListener(q -> 
+							{
 									Controller c = new Controller();
 									gameWindow.getFrame().dispose();			
-
-								});
-								gameWindow.getContentPane().removeAll();
-								gameWindow.getContentPane().add(winnerLabel, BorderLayout.NORTH);
-								gameWindow.getContentPane().add(newGame, BorderLayout.CENTER);
-							}	
+									});
+							gameWindow.getContentPane().removeAll();
+							gameWindow.getContentPane().add(winnerLabel, BorderLayout.NORTH);
+							gameWindow.getContentPane().add(newGame, BorderLayout.CENTER);
 						}
+						if(flag != true)
+						{	
+							for(int j = 0; j < 4; j++)
+							{
+								curPlayerOrder.get(j).reset();
+							}
+							createGame();
+							gameSettings.getGameBoard().removeTargetChip();
+					//		gameWindow.getContentPane().removeAll();
+							gameSettings.getGameBoard().flipChip(gameSettings.getTheme());
+							
+						}	
 					}
+					
 				}
 				catch(InterruptedException e)
 				{}

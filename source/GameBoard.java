@@ -78,12 +78,12 @@ public class GameBoard
 		TargetChip yellowMoon = new TargetChip(7, theme.getYellow(), "assets/default/Yellow_Moon_TC.png");
 		TargetChip blueMoon = new TargetChip(13, theme.getBlue(), "assets/default/Blue_Moon_TC.png");
 		TargetChip greenPlanet = new TargetChip(12, theme.getGreen(), "assets/default/Green_Planet_TC.png");
-		TargetChip redSun = new TargetChip(8, theme.getRed(), "assets/default/Red_Sun_TC.png");
+		TargetChip redSun = new TargetChip(10, theme.getRed(), "assets/default/Red_Sun_TC.png");
 		TargetChip yellowPlanet = new TargetChip(9, theme.getYellow(), "assets/default/Yellow_Planet_TC.png");
 		TargetChip greenMoon = new TargetChip(11, theme.getGreen(), "assets/default/Green_Moon_TC.png");
 		TargetChip redStar = new TargetChip(15, theme.getRed(), "assets/default/Red_Star_TC.png");
 		TargetChip blueStar = new TargetChip(14, theme.getBlue(), "assets/default/Blue_Star_TC.png");
-		TargetChip yellowSun = new TargetChip(10, theme.getYellow(), "assets/default/Yellow_Sun_TC.png");
+		TargetChip yellowSun = new TargetChip(8, theme.getYellow(), "assets/default/Yellow_Sun_TC.png");
 		TargetChip vortex = new TargetChip(16, theme.getLightGray(), "assets/default/Vortex.png");
 
 		this.chips = new ArrayList<>(Arrays.asList(greenSun, redMoon, yellowStar, blueSun, redPlanet, greenStar,
@@ -290,7 +290,7 @@ public class GameBoard
 	{
 		Random rand = new Random();
 		int chipInd = rand.nextInt(16) + 1;
-		System.out.println(chipInd);
+		System.out.println("Chip index: " + chipInd);
 		switch (chipInd)
 		{
 			case 1:	 targetChip = new TargetChip(0, theme.getRed(), "assets/default/Red_Moon_TC.png");
@@ -354,7 +354,6 @@ public class GameBoard
 			{	
 					if((this.curRobot.getColor() == this.targetChip.getColor()) && (grid[curRobot.getCoordinates()[0]][i].getTargetChip() != null) && (grid[curRobot.getCoordinates()[0]][i].getWall() != "SB"))
 					{
-						System.out.println("cur target index: " + grid[curRobot.getCoordinates()[0]][i].getTargetChip().getIndex() +"\ntarget chip Index: " + this.targetChip.getIndex());
 						if((grid[curRobot.getCoordinates()[0]][i].getTargetChip().getIndex() == this.targetChip.getIndex()) && (grid[curRobot.getCoordinates()[0]][i].getTargetChip() != this.targetChip))
 						{
 							curRobot = null;
@@ -399,7 +398,6 @@ public class GameBoard
 			{
 					if((this.curRobot.getColor() == this.targetChip.getColor()) && (grid[curRobot.getCoordinates()[0]][i].getTargetChip() != null) && (grid[curRobot.getCoordinates()[0]][i].getWall() != "NB"))
 					{
-						System.out.println("cur target index: " + grid[curRobot.getCoordinates()[0]][i].getTargetChip().getIndex() +"\ntarget chip Index: " + this.targetChip.getIndex());
 						if((grid[curRobot.getCoordinates()[0]][i].getTargetChip().getIndex() == this.targetChip.getIndex()) && (grid[curRobot.getCoordinates()[0]][i].getTargetChip() != this.targetChip))
 						{
 							curRobot = null;
@@ -441,7 +439,6 @@ public class GameBoard
 			{
 					if((this.curRobot.getColor() == this.targetChip.getColor()) && (grid[i][curRobot.getCoordinates()[1]].getTargetChip() != null) && (grid[i][curRobot.getCoordinates()[1]].getWall() != "WB"))
 					{
-						System.out.println("cur target index: " + grid[i][curRobot.getCoordinates()[1]].getTargetChip().getIndex() +"\ntarget chip Index: " + this.targetChip.getIndex());
 						if((grid[i][curRobot.getCoordinates()[1]].getTargetChip().getIndex() == this.targetChip.getIndex()) && (grid[i][curRobot.getCoordinates()[1]].getTargetChip() != this.targetChip))
 						{
 							curRobot = null;
@@ -534,6 +531,11 @@ public class GameBoard
 	private void setCurRobot(Robot robot)
 	{
 		this.curRobot = robot;
+	}
+
+	public void removeTargetChip()
+	{
+		this.targetChip = null;
 	}
 
 }
