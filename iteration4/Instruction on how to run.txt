@@ -1,0 +1,15 @@
+How to run this program on different systems: 
+
+1) Open your console's (terminal, command prompt, etc)
+
+2) Navigate to inside the release1 folder
+
+Code compilation:
+
+1) Type down javac *.java
+
+How to run the code:
+
+1)Type down java Main 
+
+After successfully completing all steps mentioned above you should be able to run the program and examine the output.
