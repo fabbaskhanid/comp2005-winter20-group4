@@ -78,6 +78,11 @@ public class BoardTile extends JPanel
 		return this.targetChip;
 	}
 
+	public void removeTargetChip()
+	{
+		this.targetChip = null;
+	}
+
 
 
 	public String getWall()
